@@ -1,18 +1,16 @@
 import { Link } from 'react-router-dom';
+import logoJhedai from '../logo-jhedai.png';
 
 const Footer = () => {
     return (
         <footer className="bg-jhedai-primary text-white border-t border-white/5">
             <div className="container py-20">
                 <div className="grid md:grid-cols-4 gap-12 mb-16">
-                    <div>
-                        <div className="flex items-center gap-2.5 mb-6">
-                            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-                                <span className="text-jhedai-primary font-bold text-sm">J</span>
-                            </div>
-                            <span className="font-bold text-xl text-white">JhedAi</span>
-                        </div>
-                        <p className="text-[14px] text-white/50 leading-relaxed max-w-xs">
+                    <div className="-mt-4">
+                        <a href="/" className="flex items-center gap-2.5 inline-block">
+                            <img src={logoJhedai} alt="JhedAi" className="h-32 w-auto brightness-0 invert" />
+                        </a>
+                        <p className="text-[14px] text-white/50 leading-relaxed max-w-xs -mt-4">
                             Consultora de inteligencia artificial aplicada a la industria y gobierno en Chile.
                             Metodología propietaria con enfoque en resultados medibles.
                         </p>

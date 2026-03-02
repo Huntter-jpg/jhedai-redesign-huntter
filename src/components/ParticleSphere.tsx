@@ -8,7 +8,7 @@ import { useInViewport } from '../hooks/useInViewport';
 // Configuration for the giant particle sphere
 const SPHERE_CONFIG = {
     baseParticleCount: 80000,  // Base count for high-end desktop
-    radius: 6.5,  // Reduced from 13.5 to occupy ~1/4 of section
+    radius: 4.55,  // Reduced by 30% from 6.5
     pulseAmplitude: 0.06,
     pulseSpeed: 0.4,
     rotationSpeed: { x: 0.03, y: 0.05, z: 0.01 }, // radians/second
@@ -145,10 +145,10 @@ const SphereParticles = () => {
                     vec3 color = mix(uColor1, uColor2, sin(colorPhase) * 0.5 + 0.5);
 
                     // Mix in light cyan for highlights
-                    color = mix(color, uColor3, vRandom * 0.4);
+                    color = mix(color, uColor3, vRandom * 0.5);
 
-                    // Brighten overall
-                    color *= 1.3;
+                    // Brighten overall - increased from 1.3 to 1.8 for more brightness
+                    color *= 1.8;
 
                     gl_FragColor = vec4(color, alpha);
                 }

@@ -19,7 +19,15 @@ const FloatingOrb = ({ position, color, speed }: { position: [number, number, nu
     return (
         <mesh ref={meshRef} position={position}>
             <sphereGeometry args={[1.2, 32, 32]} />
-            <meshStandardMaterial color={color} transparent opacity={0.35} roughness={0.8} />
+            <meshStandardMaterial
+                color={color}
+                transparent
+                opacity={0.6}
+                roughness={0.4}
+                metalness={0.3}
+                emissive={color}
+                emissiveIntensity={0.3}
+            />
         </mesh>
     );
 };

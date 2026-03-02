@@ -18,9 +18,9 @@ const Hero = () => {
 
             {/* 3D Visual - absolute overlay on the right half of the section */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.5 }}
                 className="absolute inset-0 lg:left-[40%] opacity-30 lg:opacity-100 pointer-events-none z-[1] overflow-visible"
             >
                 <HeroTorus />

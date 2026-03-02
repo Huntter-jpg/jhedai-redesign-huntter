@@ -27,6 +27,28 @@ const HomePage = () => {
                 <Hero />
                 <ServiceGrid />
 
+                {/* Elegant visual separator */}
+                <div className="relative py-20 overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white">
+                    {/* Subtle decorative elements */}
+                    <div className="absolute inset-0 opacity-30">
+                        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-jhedai-secondary/10 blur-3xl" />
+                        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-jhedai-primary/10 blur-3xl" />
+                    </div>
+
+                    {/* Decorative line pattern */}
+                    <div className="container relative">
+                        <div className="flex items-center justify-center gap-2">
+                            <div className="h-px w-20 bg-gradient-to-r from-transparent to-jhedai-secondary/30" />
+                            <div className="w-2 h-2 rounded-full bg-jhedai-secondary/40" />
+                            <div className="h-px w-32 bg-gradient-to-r from-jhedai-secondary/30 via-jhedai-primary/30 to-jhedai-secondary/30" />
+                            <div className="w-2 h-2 rounded-full bg-jhedai-primary/40" />
+                            <div className="h-px w-20 bg-gradient-to-l from-transparent to-jhedai-primary/30" />
+                        </div>
+                    </div>
+                </div>
+
+                <Methodology />
+
                 {/* Ecosistema — with giant particle sphere */}
                 <div className="relative bg-jhedai-primary">
                     <ParticleSphere />
@@ -41,7 +63,6 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <Methodology />
                 <NosotrosSimple />
                 <Blog />
                 <Assessment />

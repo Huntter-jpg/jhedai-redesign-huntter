@@ -10,6 +10,7 @@ const STRIP_HALF_WIDTH = 0.5;
 const ParticleMobius = () => {
     const pointsRef = useRef<THREE.Points>(null);
     const materialRef = useRef<THREE.ShaderMaterial>(null);
+    const initializedRef = useRef(false);
 
     const { positions, mobiusPositions, randomOffsets, sizes } = useMemo(() => {
         const positions = new Float32Array(PARTICLE_COUNT * 3);
@@ -121,14 +122,23 @@ const ParticleMobius = () => {
         });
     }, []);
 
-    useFrame((state) => {
+    useFrame((state, delta) => {
         if (!pointsRef.current || !materialRef.current) return;
+
+        // Initialize rotation on first frame to prevent jumps
+        if (!initializedRef.current) {
+            pointsRef.current.rotation.x = Math.PI * 0.3;
+            pointsRef.current.rotation.y = 0;
+            pointsRef.current.rotation.z = 0;
+            initializedRef.current = true;
+        }
+
         const t = state.clock.getElapsedTime();
 
-        // Slow elegant rotation — tilted for best viewing angle
-        pointsRef.current.rotation.x = Math.PI * 0.3 + t * 0.08;
-        pointsRef.current.rotation.y = t * 0.15;
-        pointsRef.current.rotation.z = t * 0.03;
+        // Slow elegant rotation using delta time for frame-rate independence
+        pointsRef.current.rotation.x += 0.08 * delta;
+        pointsRef.current.rotation.y += 0.15 * delta;
+        pointsRef.current.rotation.z += 0.03 * delta;
 
         // Update shader time uniform (position calculation now in GPU)
         materialRef.current.uniforms.uTime.value = t;
@@ -160,7 +170,7 @@ const ParticleMobius = () => {
 };
 
 const HeroTorus = () => {
-    const { ref, isInViewport } = useInViewport(0.1, '200px', true);
+    const { ref } = useInViewport(0.1, '0px', true);
 
     return (
         <div ref={ref} className="w-full h-full overflow-visible">
@@ -168,12 +178,11 @@ const HeroTorus = () => {
                 camera={{ position: [0, 0, 8], fov: 35 }}
                 dpr={[1, 2]}
                 gl={{ antialias: true, alpha: true }}
-                frameloop={isInViewport ? 'always' : 'never'}
+                frameloop="always"
                 style={{
                     background: 'transparent',
                     width: '100%',
-                    height: '120%',
-                    marginTop: '-10%',
+                    height: '100%',
                 }}
             >
                 <ParticleMobius />

@@ -106,6 +106,40 @@ const stats = [
     { value: '1ra', label: 'Certificadora ChileValora IA', icon: <GraduationCap size={20} /> },
 ];
 
+interface TeamMember {
+    name: string;
+    role: string;
+    image: string;
+    description: string;
+}
+
+const teamMembers: TeamMember[] = [
+    {
+        name: 'Nombre del Miembro 1',
+        role: 'CEO & Fundador',
+        image: '/team/member1.jpg',
+        description: 'Especialista en IA con más de 10 años de experiencia en transformación digital.',
+    },
+    {
+        name: 'Nombre del Miembro 2',
+        role: 'CTO',
+        image: '/team/member2.jpg',
+        description: 'Experto en Machine Learning y arquitectura de sistemas de IA.',
+    },
+    {
+        name: 'Nombre del Miembro 3',
+        role: 'Director de Innovación',
+        image: '/team/member3.jpg',
+        description: 'Líder en investigación y desarrollo de soluciones de IA aplicada.',
+    },
+    {
+        name: 'Nombre del Miembro 4',
+        role: 'Head of Data Science',
+        image: '/team/member4.jpg',
+        description: 'Científico de datos con especialización en NLP y Computer Vision.',
+    },
+];
+
 const NosotrosPage = () => {
     return (
         <>
@@ -384,6 +418,80 @@ const NosotrosPage = () => {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                </div>
+
+                {/* Team Section */}
+                <div className="container mt-32">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <p className="text-[14px] text-jhedai-secondary font-bold tracking-widest mb-4">
+                            NUESTRO EQUIPO
+                        </p>
+                        <h2 className="text-3xl lg:text-4xl font-bold text-jhedai-primary mb-4">
+                            Conoce a Nuestros Expertos
+                        </h2>
+                        <p className="text-jhedai-primary/60 text-lg max-w-2xl mx-auto">
+                            Un equipo de profesionales apasionados por la inteligencia artificial y comprometidos
+                            con tu éxito.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {teamMembers.map((member, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1, duration: 0.6 }}
+                                className="group"
+                            >
+                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-jhedai-neutral/20 hover:border-jhedai-secondary/30">
+                                    {/* Image Container */}
+                                    <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-jhedai-primary/5 to-jhedai-secondary/5">
+                                        <img
+                                            src={member.image}
+                                            alt={member.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            onError={(e) => {
+                                                // Fallback to placeholder if image doesn't exist
+                                                const target = e.target as HTMLImageElement;
+                                                target.style.display = 'none';
+                                                const parent = target.parentElement;
+                                                if (parent) {
+                                                    parent.innerHTML = `
+                                                        <div class="w-full h-full flex items-center justify-center">
+                                                            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-jhedai-primary to-jhedai-secondary flex items-center justify-center text-white text-4xl font-bold">
+                                                                ${member.name.charAt(0)}
+                                                            </div>
+                                                        </div>
+                                                    `;
+                                                }
+                                            }}
+                                        />
+                                    </div>
+
+                                    {/* Info Container */}
+                                    <div className="p-6">
+                                        <h3 className="text-xl font-bold text-jhedai-primary mb-2 group-hover:text-jhedai-secondary transition-colors">
+                                            {member.name}
+                                        </h3>
+                                        <p className="text-jhedai-secondary font-semibold mb-3">
+                                            {member.role}
+                                        </p>
+                                        <p className="text-sm text-jhedai-primary/70 leading-relaxed">
+                                            {member.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
 
