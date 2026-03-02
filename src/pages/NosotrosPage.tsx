@@ -113,7 +113,8 @@ interface TeamMember {
     image: string;
     description: string;
     linkedin?: string;
-    bannerColor: string;
+    bannerFrom: string;
+    bannerTo: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -123,7 +124,8 @@ const teamMembers: TeamMember[] = [
         image: '/team/member1.jpg',
         description: 'Especialista en IA con más de 10 años de experiencia en transformación digital.',
         linkedin: '#',
-        bannerColor: 'from-jhedai-primary to-jhedai-secondary',
+        bannerFrom: '#0a1628',
+        bannerTo: '#00b4d8',
     },
     {
         name: 'Nombre del Miembro 2',
@@ -131,7 +133,8 @@ const teamMembers: TeamMember[] = [
         image: '/team/member2.jpg',
         description: 'Experto en Machine Learning y arquitectura de sistemas de IA.',
         linkedin: '#',
-        bannerColor: 'from-jhedai-secondary to-jhedai-accent',
+        bannerFrom: '#00b4d8',
+        bannerTo: '#0077b6',
     },
     {
         name: 'Nombre del Miembro 3',
@@ -139,7 +142,8 @@ const teamMembers: TeamMember[] = [
         image: '/team/member3.jpg',
         description: 'Líder en investigación y desarrollo de soluciones de IA aplicada.',
         linkedin: '#',
-        bannerColor: 'from-indigo-600 to-jhedai-secondary',
+        bannerFrom: '#4338ca',
+        bannerTo: '#00b4d8',
     },
     {
         name: 'Nombre del Miembro 4',
@@ -147,7 +151,8 @@ const teamMembers: TeamMember[] = [
         image: '/team/member4.jpg',
         description: 'Científico de datos con especialización en NLP y Computer Vision.',
         linkedin: '#',
-        bannerColor: 'from-jhedai-primary to-indigo-700',
+        bannerFrom: '#0a1628',
+        bannerTo: '#4338ca',
     },
 ];
 
@@ -465,13 +470,16 @@ const NosotrosPage = () => {
                             >
                                 <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-jhedai-secondary/40">
                                     {/* Banner */}
-                                    <div className={`relative h-24 bg-gradient-to-r ${member.bannerColor}`}>
+                                    <div
+                                        className="relative h-28"
+                                        style={{ background: `linear-gradient(135deg, ${member.bannerFrom}, ${member.bannerTo})` }}
+                                    >
                                         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[size:20px_20px]" />
                                     </div>
 
                                     {/* Avatar */}
-                                    <div className="relative px-5 -mt-10 mb-3">
-                                        <div className="w-20 h-20 rounded-full border-4 border-white shadow-md bg-gradient-to-br from-jhedai-primary/10 to-jhedai-secondary/10 overflow-hidden">
+                                    <div className="relative px-5 -mt-12 mb-4">
+                                        <div className="w-24 h-24 rounded-full border-4 border-white shadow-lg bg-gradient-to-br from-jhedai-primary/10 to-jhedai-secondary/10 overflow-hidden">
                                             <img
                                                 src={member.image}
                                                 alt={member.name}
