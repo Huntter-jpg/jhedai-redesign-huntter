@@ -493,7 +493,7 @@ const NosotrosPage = () => {
                                     </div>
 
                                     {/* Info */}
-                                    <div className="px-5 pb-6 text-center">
+                                    <div className="px-5 pt-4 pb-6 text-center">
                                         <h3 className="text-[15px] font-bold text-jhedai-primary leading-tight group-hover:text-jhedai-secondary transition-colors">
                                             {member.name}
                                         </h3>
