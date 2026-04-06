@@ -12,9 +12,13 @@ import {
   TrendingUp,
   Globe,
   Building2,
-  UserPlus,
+  Handshake,
+  Presentation,
+  Landmark,
+  Server,
 } from "lucide-react";
 import SEOHead from "../components/SEOHead";
+import { BreadcrumbSchema } from "../components/schemas/BreadcrumbSchema";
 
 interface Milestone {
   date: string;
@@ -27,49 +31,130 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    date: "2022",
-    title: "Fundación de JhedAI",
+    date: "Marzo 2024",
+    title: "Constitución Legal de JhedAI",
     description:
-      "Inicio de operaciones como consultora especializada en IA aplicada para industria y gobierno en Chile. Nos establecimos con la misión de democratizar el acceso a soluciones de inteligencia artificial de clase mundial.",
-    icon: <Rocket size={20} />,
+      "Se constituyó legalmente JhedAI SpA, marcando el inicio formal de operaciones como consultora especializada en IA aplicada.",
+    icon: <Building2 size={20} />,
     category: "Fundación",
     position: "right",
   },
   {
-    date: "2023",
-    title: "Lanzamiento DeepLab",
+    date: "Julio 2024",
+    title: "100 Soluciones para la Ciudad",
     description:
-      "Creación del programa DeepLab, nuestra metodología propietaria para diagnóstico, capacitación y soluciones integrales de IA. Este programa marca un hito en nuestra capacidad de entregar proyectos end-to-end.",
-    icon: <Lightbulb size={20} />,
-    category: "Producto",
-    position: "left",
-  },
-  {
-    date: "2024",
-    title: "Academia JhedAI",
-    description:
-      "Inicio de programas de capacitación certificados por ChileValora en Machine Learning, NLP y Computer Vision. Nos convertimos en la primera certificadora oficial de perfiles de IA reconocidos por el Estado de Chile.",
-    icon: <GraduationCap size={20} />,
-    category: "Formación",
-    position: "right",
-  },
-  {
-    date: "Febrero 2025",
-    title: "Cámara Chilena de Inteligencia Artificial (CCHIA)",
-    description:
-      "Participación protagonista en la fundación de CCHIA, impulsando la regulación y desarrollo ético de IA en Chile. Este hito consolida nuestro liderazgo en la industria nacional de inteligencia artificial.",
-    icon: <Award size={20} />,
+      "Seleccionados para el Catálogo '100 Soluciones para la Ciudad', lo que llevó a exponer en Smart City Expo Santiago, ganando visibilidad nacional.",
+    icon: <Globe size={20} />,
     category: "Reconocimiento",
     position: "left",
   },
   {
-    date: "Diciembre 2025",
-    title: "Centro de Supercómputo e IA Aplicada (CSIIA)",
+    date: "Agosto 2024",
+    title: "AI Hackathon 2024 - OpenAI LATAM",
     description:
-      "Protagonistas en la creación del CSIIA, fortaleciendo la investigación y capacidad computacional para IA en Chile. Este centro marca un antes y después en la infraestructura de IA del país.",
+      "Participación en la primera hackathon de OpenAI en Latinoamérica, 'AI Hackathon 2024', demostrando expertise en desarrollo de soluciones IA.",
     icon: <Cpu size={20} />,
+    category: "Innovación",
+    position: "right",
+  },
+  {
+    date: "Octubre 2024",
+    title: "MOU con Centro Nacional de IA (CENIA)",
+    description:
+      "Firma de MOU con el Centro Nacional de IA (CENIA), estableciendo alianzas estratégicas para investigación y aplicación IA.",
+    icon: <Handshake size={20} />,
+    category: "Alianza",
+    position: "left",
+  },
+  {
+    date: "Noviembre 2024",
+    title: "Stand en EtMday 2024",
+    description:
+      "Presencia con stand en EtMday 2024, el mayor encuentro de innovación, emprendimiento e inversión de Latinoamérica.",
+    icon: <Presentation size={20} />,
+    category: "Evento",
+    position: "right",
+  },
+  {
+    date: "Enero 2025",
+    title: "Perfiles Profesionales de IA - ChileValora",
+    description:
+      "Equipo de JhedAI contribuye activamente en la creación de 5 perfiles profesionales de IA, liderada por ChileValora y Ministerio de Ciencia.",
+    icon: <GraduationCap size={20} />,
+    category: "Formación",
+    position: "left",
+  },
+  {
+    date: "Enero 2025",
+    title: "Cámara Chilena de Inteligencia Artificial",
+    description:
+      "Constitución de la Cámara Chilena de Inteligencia Artificial A.G., con Edison Vásquez (CEO de JhedAI) como presidente, para acelerar adopción responsable de IA.",
+    icon: <Landmark size={20} />,
+    category: "Liderazgo",
+    position: "right",
+  },
+  {
+    date: "Abril 2025",
+    title: "Colaborador en Proyecto LATAM GPT",
+    description:
+      "JhedAI ingresa como colaborador al proyecto LATAM GPT, el primer modelo de inteligencia artificial regional coordinado por CENIA, aportando capacidades técnicas para el desarrollo de un LLM abierto diseñado desde y para Latinoamérica.",
+    icon: <Globe size={20} />,
+    category: "Colaboración",
+    position: "left",
+  },
+  {
+    date: "Junio 2025",
+    title: "Fondo CORFO - CSIAA",
+    description:
+      "Adjudicación de fondo CORFO para el Centro de Supercómputo e IA Aplicada (CSIAA), con JhedAI como empresa asociada fundadora en Viña del Mar.",
+    icon: <Server size={20} />,
     category: "Infraestructura",
     position: "right",
+  },
+  {
+    date: "Agosto 2025",
+    title: "StartUp Day en Congreso Nacional",
+    description:
+      "Seleccionados para StartUp Day en el Congreso Nacional de Chile, organizado por la Bancada StartUp.",
+    icon: <Rocket size={20} />,
+    category: "Reconocimiento",
+    position: "left",
+  },
+  {
+    date: "Noviembre 2025",
+    title: "Doble Presencia en EtMday 2025",
+    description:
+      "Presencia en EtMday por segundo año consecutivo, con 2 stands: uno de JhedAI y otro de la Cámara Chilena de IA.",
+    icon: <Award size={20} />,
+    category: "Evento",
+    position: "right",
+  },
+  {
+    date: "Noviembre 2025",
+    title: "MOU entre AMD y CSIAA",
+    description:
+      "Firma de Memorándum de Entendimiento entre AMD y CSIAA, abriendo colaboración en supercómputo IA como empresa asociada.",
+    icon: <Handshake size={20} />,
+    category: "Alianza",
+    position: "left",
+  },
+  {
+    date: "Enero 2026",
+    title: "Círculo de StartUp EIVA",
+    description:
+      "Seleccionados como miembros del Círculo de StartUp de EIVA, impulsando innovación en la Región de Valparaíso.",
+    icon: <Users size={20} />,
+    category: "Comunidad",
+    position: "right",
+  },
+  {
+    date: "Febrero 2026",
+    title: "Lanzamiento Oficial de LATAM GPT",
+    description:
+      "Se lanza oficialmente LATAM GPT, el primer Gran Modelo de Lenguaje abierto de América Latina y el Caribe, desarrollado colaborativamente por más de 60 instituciones y 200 especialistas de 15 países, coordinado por CENIA con el respaldo de CAF, el Gobierno de Chile, AWS y Data Observatory. JhedAI participó como colaborador técnico en este hito regional.",
+    icon: <Rocket size={20} />,
+    category: "Hito Regional",
+    position: "left",
   },
 ];
 
@@ -125,12 +210,12 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Nombre del Miembro 1",
-    role: "CEO & Fundador",
-    image: "/team/member1.jpg",
+    name: "Edison Vásquez",
+    role: "CEO",
+    image: "/team/edison-vasquez.jpg",
     description:
-      "Especialista en IA con más de 10 años de experiencia en transformación digital.",
-    linkedin: "",
+      "Ingeniero Civil Industrial, PhD(c) en Ingeniería Informática Aplicada. Presidente de la Cámara Chilena de Inteligencia Artificial. Especialista en implementación de IA estratégica, optimización de procesos y construcción de ecosistemas de IA en América Latina.",
+    linkedin: "https://www.linkedin.com/in/edison-v-29758742/",
   },
   {
     name: "Nombre del Miembro 2",
@@ -156,6 +241,14 @@ const teamMembers: TeamMember[] = [
       "Científico de datos con especialización en NLP y Computer Vision.",
     linkedin: "",
   },
+  {
+    name: "Ignacio Rojas",
+    role: "Director de Marketing",
+    image: "/team/ignacio-rojas.jpg",
+    description:
+      "Ingeniero civil industrial, estratega de marketing digital e innovación, y consultor de transformación basada en Inteligencia Artificial.",
+    linkedin: "",
+  },
 ];
 
 const NosotrosPage = () => {
@@ -171,6 +264,12 @@ const NosotrosPage = () => {
           name: "Nosotros - JhedAI",
           description: "Historia y trayectoria de JhedAI",
         }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Inicio", url: "https://jhedai.com" },
+          { name: "Nosotros", url: "https://jhedai.com/nosotros" },
+        ]}
       />
 
       <div className="pt-28 pb-24 bg-white">
@@ -352,15 +451,20 @@ const NosotrosPage = () => {
             className="text-center mb-20"
           >
             <p className="text-[14px] text-jhedai-secondary font-bold tracking-widest mb-4">
-              TRAYECTORIA
+              HISTORIA
             </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-jhedai-primary mb-4">
-              Nuestro Recorrido
+            <h2 className="text-2xl lg:text-4xl font-bold text-jhedai-primary mb-4">
+              Nuestra Trayectoria: Hitos que Definen el Futuro de la IA en Chile
             </h2>
-            <p className="text-jhedai-primary/60 text-lg max-w-3xl mx-auto leading-relaxed">
-              Desde nuestra fundación, hemos marcado hitos clave que definen
-              nuestra evolución como líderes en inteligencia artificial aplicada
-              en Chile.
+            <p className="text-jhedai-primary/60 text-lg max-w-3xl mx-auto leading-relaxed mb-4">
+              JhedAI ha recorrido un camino acelerado de innovación y liderazgo
+              en inteligencia artificial aplicada, desde su fundación hasta
+              consolidarnos como referente nacional.
+            </p>
+            <p className="text-jhedai-primary/50 text-base max-w-3xl mx-auto leading-relaxed">
+              Esta línea de tiempo destaca los logros clave que posicionan a
+              JhedAI como impulsor de la transformación digital para empresas y
+              sector público.
             </p>
           </motion.div>
 
@@ -370,7 +474,7 @@ const NosotrosPage = () => {
             <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-jhedai-secondary via-jhedai-primary to-jhedai-accent transform -translate-x-1/2 hidden lg:block" />
 
             {/* Milestones */}
-            <div className="space-y-16">
+            <div className="space-y-12">
               {milestones.map((milestone, i) => (
                 <motion.div
                   key={i}
@@ -380,7 +484,7 @@ const NosotrosPage = () => {
                   }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15, duration: 0.6 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
                   className={`relative flex items-center gap-8 ${
                     milestone.position === "left"
                       ? "lg:flex-row-reverse lg:text-right"
@@ -394,7 +498,7 @@ const NosotrosPage = () => {
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
                       transition={{
-                        delay: i * 0.15 + 0.3,
+                        delay: i * 0.1 + 0.2,
                         type: "spring",
                         stiffness: 200,
                       }}
@@ -478,16 +582,9 @@ const NosotrosPage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="group"
-              >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-jhedai-secondary/40">
+            {teamMembers.map((member, i) => {
+              const CardContent = (
+                <div className="bg-white h-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-jhedai-secondary/40">
                   {/* Photo area - full width with wave bottom */}
                   <div className="relative w-full h-52 overflow-hidden">
                     <img
@@ -527,26 +624,37 @@ const NosotrosPage = () => {
                     <p className="text-[13px] text-jhedai-secondary font-medium mt-0.5 mb-3 leading-tight">
                       {member.role}
                     </p>
-                    <p className="text-[12px] text-jhedai-primary/60 leading-relaxed border-t border-gray-100 pt-3 mb-4">
+                    <p className="text-[12px] text-jhedai-primary/60 leading-relaxed border-t border-gray-100 pt-3">
                       {member.description}
                     </p>
-
-                    {/* Connect button */}
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-full border-2 border-jhedai-primary/80 text-jhedai-primary text-[13px] font-semibold hover:bg-jhedai-primary hover:text-white transition-all duration-200"
-                      >
-                        <UserPlus size={14} />
-                        Conectar
-                      </a>
-                    )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              );
+
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  className="group"
+                >
+                  {member.linkedin ? (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full no-underline"
+                    >
+                      {CardContent}
+                    </a>
+                  ) : (
+                    CardContent
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
