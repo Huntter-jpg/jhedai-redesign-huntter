@@ -1,32 +1,34 @@
-import { JsonLd } from 'react-schemaorg';
-import type { FAQPage, Question } from 'schema-dts';
+import { JsonLd } from "react-schemaorg";
+import type { FAQPage, Question } from "schema-dts";
 
 export interface FAQItem {
-    question: string;
-    answer: string;
+  question: string;
+  answer: string;
 }
 
 interface FAQPageSchemaProps {
-    faqs: FAQItem[];
+  faqs: FAQItem[];
 }
 
 const FAQPageSchema = ({ faqs }: FAQPageSchemaProps) => {
-    return (
-        <JsonLd<FAQPage>
-            item={{
-                '@context': 'https://schema.org',
-                '@type': 'FAQPage',
-                mainEntity: faqs.map((faq): Question => ({
-                    '@type': 'Question',
-                    name: faq.question,
-                    acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: faq.answer,
-                    },
-                })),
-            }}
-        />
-    );
+  return (
+    <JsonLd<FAQPage>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(
+          (faq): Question => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          }),
+        ),
+      }}
+    />
+  );
 };
 
 export default FAQPageSchema;

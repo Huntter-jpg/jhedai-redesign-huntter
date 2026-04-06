@@ -18,41 +18,41 @@ pages_build_output_dir = "dist"
 [vars]
 ENVIRONMENT = "production"
 
-# Build configuration
-[build]
-command = "npm run build"
-cwd = "."
+# Build configuration (not supported by wrangler pages deploy)
+# [build]
+# command = "npm run build"
+# cwd = "."
 
-# Headers personalizados
-[[headers]]
-for = "/*"
-[headers.values]
-X-Frame-Options = "DENY"
-X-Content-Type-Options = "nosniff"
-Referrer-Policy = "strict-origin-when-cross-origin"
-Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+# Headers personalizados (managed via _headers file for Pages)
+# [[headers]]
+# for = "/*"
+# [headers.values]
+# X-Frame-Options = "DENY"
+# X-Content-Type-Options = "nosniff"
+# Referrer-Policy = "strict-origin-when-cross-origin"
+# Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
 # Cache para assets estáticos
-[[headers]]
-for = "/assets/*"
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+# [[headers]]
+# for = "/assets/*"
+# [headers.values]
+# Cache-Control = "public, max-age=31536000, immutable"
 
 # Cache para imágenes
-[[headers]]
-for = "*.png"
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+# [[headers]]
+# for = "*.png"
+# [headers.values]
+# Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-for = "*.jpg"
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+# [[headers]]
+# for = "*.jpg"
+# [headers.values]
+# Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-for = "*.webp"
-[headers.values]
-Cache-Control = "public, max-age=31536000, immutable"
+# [[headers]]
+# for = "*.webp"
+# [headers.values]
+# Cache-Control = "public, max-age=31536000, immutable"
 
 # Redirects (ejemplo)
 # [[redirects]]

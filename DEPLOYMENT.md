@@ -129,11 +129,13 @@ npx wrangler deployments list
 Para desplegar el backend en Cloudflare, necesitas:
 
 1. **Crear un Cloudflare Workers project:**
+
    ```bash
    npm create cloudflare@latest
    ```
 
 2. **Configurar Wrangler (Cloudflare CLI):**
+
    ```bash
    npm install -g wrangler
    wrangler login
@@ -154,17 +156,20 @@ Para desplegar el backend en Cloudflare, necesitas:
 Si necesitas configurar un backend, aquí están las opciones:
 
 #### Option 1: Cloudflare Workers (Serverless)
+
 - Ideal para APIs simples
 - Edge computing global
 - Free tier disponible
 - Integración con D1 (SQLite), KV, R2
 
 #### Option 2: Cloudflare Pages Functions
+
 - Integración directa con frontend
 - File-based routing
 - TypeScript support
 
 #### Option 3: Cloudflare Durable Objects
+
 - Stateful workers
 - WebSocket support
 - Real-time features
@@ -287,12 +292,14 @@ vercel promote <deployment-url>
 ## 📱 Testing
 
 **Production URLs:**
+
 - Homepage: https://jhedai-redesign.vercel.app/
 - Servicios: https://jhedai-redesign.vercel.app/servicios
 - Blog: https://jhedai-redesign.vercel.app/blog
 - Contacto: https://jhedai-redesign.vercel.app/contacto
 
 **Test Checklist:**
+
 - [ ] Homepage loads correctly
 - [ ] ServiceGrid cards navigate to /servicios
 - [ ] Servicios page displays 7 services

@@ -3,12 +3,12 @@
  * for optimizing 3D particle systems based on device capabilities
  */
 
-export type DeviceTier = 'mobile' | 'tablet' | 'low-desktop' | 'high-desktop';
+export type DeviceTier = "mobile" | "tablet" | "low-desktop" | "high-desktop";
 
 export interface LODConfig {
-    particleCount: number;
-    dpr: [number, number];
-    antialias: boolean;
+  particleCount: number;
+  dpr: [number, number];
+  antialias: boolean;
 }
 
 /**
@@ -20,33 +20,42 @@ export interface LODConfig {
  * const particleCount = BASE_COUNT * LOD_CONFIG[tier].particleCount;
  */
 export const getDeviceTier = (): DeviceTier => {
-    const userAgent = navigator.userAgent;
-    const isMobile = /iPhone|iPod|Android.*Mobile/i.test(userAgent);
-    const isTablet = /iPad|Android(?!.*Mobile)/i.test(userAgent) && window.innerWidth >= 768;
-    const width = window.innerWidth;
+  const userAgent = navigator.userAgent;
+  const isMobile = /iPhone|iPod|Android.*Mobile/i.test(userAgent);
+  const isTablet =
+    /iPad|Android(?!.*Mobile)/i.test(userAgent) && window.innerWidth >= 768;
+  const width = window.innerWidth;
 
-    // Mobile devices
-    if (isMobile && !isTablet) {
-        return 'mobile';
-    }
+  // Mobile devices
+  if (isMobile && !isTablet) {
+    return "mobile";
+  }
 
-    // Tablet devices
-    if (isTablet || (width >= 768 && width < 1024)) {
-        return 'tablet';
-    }
+  // Tablet devices
+  if (isTablet || (width >= 768 && width < 1024)) {
+    return "tablet";
+  }
 
-    // Desktop detection - check for low-power indicators
-    const hasLowPowerMode = userAgent.includes('Safari') && !userAgent.includes('Chrome');
-    const hasHighMemory = (navigator as any).deviceMemory ? (navigator as any).deviceMemory >= 8 : true;
-    const hasHighCores = navigator.hardwareConcurrency ? navigator.hardwareConcurrency >= 4 : true;
+  // Desktop detection - check for low-power indicators
+  const isSafari =
+    userAgent.includes("Safari") && !userAgent.includes("Chrome");
+  const hasHighMemory = (navigator as any).deviceMemory
+    ? (navigator as any).deviceMemory >= 8
+    : true;
+  const hasHighCores = navigator.hardwareConcurrency
+    ? navigator.hardwareConcurrency >= 4
+    : true;
 
-    // Low-power desktop (integrated graphics, low RAM, or power-saving mode)
-    if (hasLowPowerMode || !hasHighMemory || !hasHighCores) {
-        return 'low-desktop';
-    }
+  // Only flag Safari as low-power if deviceMemory API confirms it
+  const isLowPowerSafari = isSafari && !hasHighMemory;
 
-    // High-end desktop
-    return 'high-desktop';
+  // Low-power desktop (low RAM or few cores)
+  if (isLowPowerSafari || !hasHighMemory || !hasHighCores) {
+    return "low-desktop";
+  }
+
+  // High-end desktop
+  return "high-desktop";
 };
 
 /**
@@ -56,26 +65,26 @@ export const getDeviceTier = (): DeviceTier => {
  * - antialias: Enable/disable antialiasing
  */
 export const LOD_CONFIG: Record<DeviceTier, LODConfig> = {
-    'mobile': {
-        particleCount: 0.3,      // 30% of desktop particle count
-        dpr: [1, 1.5],           // Lower DPR for performance
-        antialias: false,        // Disable AA on mobile
-    },
-    'tablet': {
-        particleCount: 0.5,      // 50% of desktop particle count
-        dpr: [1, 1.5],
-        antialias: false,
-    },
-    'low-desktop': {
-        particleCount: 0.75,     // 75% of desktop particle count
-        dpr: [1, 1.5],
-        antialias: false,        // Disable AA on low-power
-    },
-    'high-desktop': {
-        particleCount: 1.0,      // Full particle count
-        dpr: [1, 2],             // Allow up to 2x DPR
-        antialias: true,         // Enable AA on high-end
-    },
+  mobile: {
+    particleCount: 0.3, // 30% of desktop particle count
+    dpr: [1, 1.5], // Lower DPR for performance
+    antialias: false, // Disable AA on mobile
+  },
+  tablet: {
+    particleCount: 0.5, // 50% of desktop particle count
+    dpr: [1, 1.5],
+    antialias: false,
+  },
+  "low-desktop": {
+    particleCount: 0.75, // 75% of desktop particle count
+    dpr: [1, 1.5],
+    antialias: false, // Disable AA on low-power
+  },
+  "high-desktop": {
+    particleCount: 1.0, // Full particle count
+    dpr: [1, 2], // Allow up to 2x DPR
+    antialias: true, // Enable AA on high-end
+  },
 };
 
 /**
@@ -83,8 +92,8 @@ export const LOD_CONFIG: Record<DeviceTier, LODConfig> = {
  * @returns LODConfig object with particleCount, dpr, antialias
  */
 export const getLODConfig = (): LODConfig => {
-    const tier = getDeviceTier();
-    return LOD_CONFIG[tier];
+  const tier = getDeviceTier();
+  return LOD_CONFIG[tier];
 };
 
 /**
@@ -93,6 +102,6 @@ export const getLODConfig = (): LODConfig => {
  * @returns Adjusted particle count for current device
  */
 export const getParticleCount = (baseCount: number): number => {
-    const config = getLODConfig();
-    return Math.floor(baseCount * config.particleCount);
+  const config = getLODConfig();
+  return Math.floor(baseCount * config.particleCount);
 };

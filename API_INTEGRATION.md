@@ -11,7 +11,8 @@
 Create `src/lib/apiClient.ts`:
 
 ```typescript
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://jhedai-api.edison-985.workers.dev';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "https://jhedai-api.edison-985.workers.dev";
 
 export interface ContactFormData {
   nombre: string;
@@ -32,24 +33,26 @@ export interface ApiResponse<T> {
 /**
  * Submit contact form
  */
-export async function submitContactForm(data: ContactFormData): Promise<ApiResponse<any>> {
+export async function submitContactForm(
+  data: ContactFormData,
+): Promise<ApiResponse<any>> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/contact`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.message || 'Failed to submit form');
+      throw new Error(error.message || "Failed to submit form");
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error("Contact form error:", error);
     throw error;
   }
 }
@@ -62,12 +65,12 @@ export async function getServices(): Promise<ApiResponse<any[]>> {
     const response = await fetch(`${API_BASE_URL}/api/services`);
 
     if (!response.ok) {
-      throw new Error('Failed to fetch services');
+      throw new Error("Failed to fetch services");
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Get services error:', error);
+    console.error("Get services error:", error);
     throw error;
   }
 }
@@ -75,17 +78,22 @@ export async function getServices(): Promise<ApiResponse<any[]>> {
 /**
  * Get blog posts
  */
-export async function getBlogPosts(page = 1, limit = 10): Promise<ApiResponse<any[]>> {
+export async function getBlogPosts(
+  page = 1,
+  limit = 10,
+): Promise<ApiResponse<any[]>> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/blog?page=${page}&limit=${limit}`);
+    const response = await fetch(
+      `${API_BASE_URL}/api/blog?page=${page}&limit=${limit}`,
+    );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch blog posts');
+      throw new Error("Failed to fetch blog posts");
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Get blog posts error:', error);
+    console.error("Get blog posts error:", error);
     throw error;
   }
 }
@@ -98,12 +106,12 @@ export async function checkHealth(): Promise<ApiResponse<any>> {
     const response = await fetch(`${API_BASE_URL}/health`);
 
     if (!response.ok) {
-      throw new Error('API health check failed');
+      throw new Error("API health check failed");
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Health check error:', error);
+    console.error("Health check error:", error);
     throw error;
   }
 }
@@ -114,7 +122,7 @@ export async function checkHealth(): Promise<ApiResponse<any>> {
 Update `src/pages/ContactoPage.tsx` to use the API client:
 
 ```typescript
-import { submitContactForm } from '../lib/apiClient';
+import { submitContactForm } from "../lib/apiClient";
 
 // In handleSubmit function:
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -122,12 +130,12 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   const formData = new FormData(e.currentTarget);
   const data = {
-    nombre: formData.get('nombre') as string,
-    email: formData.get('email') as string,
-    empresa: formData.get('empresa') as string,
-    telefono: formData.get('telefono') as string,
-    servicio: formData.get('servicio') as string,
-    mensaje: formData.get('mensaje') as string,
+    nombre: formData.get("nombre") as string,
+    email: formData.get("email") as string,
+    empresa: formData.get("empresa") as string,
+    telefono: formData.get("telefono") as string,
+    servicio: formData.get("servicio") as string,
+    mensaje: formData.get("mensaje") as string,
   };
 
   try {
@@ -136,11 +144,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     if (response.success) {
       setSubmitted(true);
     } else {
-      alert(response.error || 'Error al enviar el mensaje');
+      alert(response.error || "Error al enviar el mensaje");
     }
   } catch (error) {
-    console.error('Error:', error);
-    alert('Error al enviar el mensaje. Por favor intenta nuevamente.');
+    console.error("Error:", error);
+    alert("Error al enviar el mensaje. Por favor intenta nuevamente.");
   }
 };
 ```
@@ -198,6 +206,7 @@ GET https://jhedai-api.edison-985.workers.dev/health
 ```
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -214,6 +223,7 @@ GET https://jhedai-api.edison-985.workers.dev/api/services
 ```
 
 **Response:**
+
 ```json
 {
   "data": [
@@ -246,6 +256,7 @@ Content-Type: application/json
 ```
 
 **Success Response:**
+
 ```json
 {
   "success": true,
@@ -258,6 +269,7 @@ Content-Type: application/json
 ```
 
 **Error Response:**
+
 ```json
 {
   "error": "Missing required fields",
@@ -272,6 +284,7 @@ GET https://jhedai-api.edison-985.workers.dev/api/blog?page=1&limit=10
 ```
 
 **Response:**
+
 ```json
 {
   "data": [...],
@@ -287,6 +300,7 @@ GET https://jhedai-api.edison-985.workers.dev/api/blog?page=1&limit=10
 ## CORS Configuration
 
 The backend is configured to accept requests from:
+
 - `https://jhedai-redesign.vercel.app`
 - `http://localhost:5173` (development)
 
@@ -298,6 +312,7 @@ ALLOWED_ORIGINS = "https://jhedai-redesign.vercel.app,http://localhost:5173,http
 ```
 
 Then redeploy:
+
 ```bash
 cd ../jhedai-backend
 npm run deploy
@@ -315,6 +330,7 @@ All API endpoints return errors in this format:
 ```
 
 Common HTTP status codes:
+
 - `200` - Success
 - `201` - Created
 - `400` - Bad Request (validation error)

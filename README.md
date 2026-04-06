@@ -2,13 +2,15 @@
 
 Sitio web corporativo de JhedAI con optimizaciones SEO avanzadas, efectos 3D de alta performance y arquitectura lista para Cloudflare.
 
-🌐 **Producción**: https://jhedai-redesign.vercel.app
+🌐 **Producción (Vercel)**: https://jhedai-redesign.vercel.app
+🌐 **Producción (Cloudflare)**: https://jhedai.pages.dev
 
 ---
 
 ## 🚀 Stack Tecnológico
 
 ### Frontend
+
 - **React 19** - UI framework
 - **TypeScript** - Type safety
 - **Vite 7** - Build tool ultra-rápido
@@ -16,12 +18,14 @@ Sitio web corporativo de JhedAI con optimizaciones SEO avanzadas, efectos 3D de 
 - **Framer Motion** - Animaciones fluidas
 
 ### 3D & Graphics
+
 - **Three.js** - Librería 3D WebGL
 - **@react-three/fiber** - React renderer para Three.js
 - **@react-three/drei** - Helpers útiles para R3F
 - Efectos optimizados: Torus Knot, Particle Sphere, Methodology Scene
 
 ### SEO & Performance
+
 - **react-helmet-async** - Meta tags thread-safe
 - **react-schemaorg + schema-dts** - Structured data type-safe
 - **web-vitals** - Core Web Vitals tracking
@@ -29,8 +33,9 @@ Sitio web corporativo de JhedAI con optimizaciones SEO avanzadas, efectos 3D de 
 - **vite-plugin-compression** - Gzip + Brotli
 
 ### Deployment
-- **Vercel** (actual) - Edge deployment
-- **Cloudflare Pages** (ready) - 330+ edge locations, Workers, Images
+
+- **Vercel** - Edge deployment (https://jhedai-redesign.vercel.app)
+- **Cloudflare Pages** - 330+ edge locations, Workers (https://jhedai.pages.dev)
 
 ---
 
@@ -100,8 +105,13 @@ jhedai-redesign/
 │   │   ├── HomePage.tsx
 │   │   ├── ServiciosPage.tsx
 │   │   ├── NosotrosPage.tsx
+│   │   ├── MetodologiaPage.tsx
+│   │   ├── EcosistemaPage.tsx
 │   │   ├── BlogListPage.tsx
-│   │   └── ContactoPage.tsx
+│   │   ├── BlogPostPage.tsx
+│   │   ├── ContactoPage.tsx
+│   │   ├── PrivacidadPage.tsx
+│   │   └── TerminosPage.tsx
 │   ├── utils/
 │   │   ├── deviceDetection.ts         # LOD system
 │   │   ├── fibonacciSphere.ts         # Distribución uniforme
@@ -109,7 +119,8 @@ jhedai-redesign/
 │   ├── hooks/
 │   │   └── useInViewport.ts           # Viewport detection
 │   ├── lib/
-│   │   └── api.ts                     # Backend integration
+│   │   ├── api.ts                     # Blog/Members API client (localStorage cache)
+│   │   └── apiClient.ts              # Contact/Services API client
 │   └── main.tsx
 ├── functions/
 │   └── _middleware.ts                 # Cloudflare Worker (crawler pre-rendering)
@@ -130,6 +141,7 @@ jhedai-redesign/
 ## ✨ Features Implementados
 
 ### 🎨 3D Graphics Optimizados
+
 - ✅ **HeroTorus**: Möbius Knot con 10k partículas, movimiento GPU-based
 - ✅ **ParticleSphere**: 80k partículas con distribución Fibonacci
 - ✅ **MethodologyScene**: 4 esferas interactivas con animaciones
@@ -140,6 +152,7 @@ jhedai-redesign/
 ### 🔍 SEO Completo (Fases 1-3)
 
 #### Fase 1: Fundamentos SEO
+
 - ✅ Meta tags completos (OG, Twitter cards, canonical URLs)
 - ✅ 5 Schema.org schemas (Organization, Service, Breadcrumb, BlogPosting, FAQ)
 - ✅ Core Web Vitals tracking (LCP, INP, CLS, FCP, TTFB)
@@ -147,12 +160,14 @@ jhedai-redesign/
 - ✅ robots.txt optimizado para 20+ crawlers (AI bots incluidos)
 
 #### Fase 2: Cloudflare Ready
+
 - ✅ Wrangler CLI configurado
 - ✅ Worker middleware para pre-rendering crawlers
 - ✅ wrangler.toml con security headers
 - ✅ Documentación completa migración
 
 #### Fase 3: Optimizaciones Avanzadas
+
 - ✅ Gzip + Brotli compression (~75% reducción)
 - ✅ Code splitting (react-vendor, three-vendor, animation-vendor)
 - ✅ Analytics component (Plausible/GTM ready)
@@ -160,13 +175,13 @@ jhedai-redesign/
 
 ### 📊 Performance Metrics
 
-| Métrica | Antes | Después | Mejora |
-|---------|-------|---------|--------|
-| Particle Count | 640k | 80k | -87.5% |
-| three-vendor.js | 1040KB | 231KB (Brotli) | -77.8% |
-| animation-vendor.js | 116KB | 34KB (Brotli) | -70.7% |
-| LCP (esperado) | ~4s | <2.5s | ~40% |
-| PageSpeed (target) | ~70 | >90 | +20pts |
+| Métrica             | Antes  | Después        | Mejora |
+| ------------------- | ------ | -------------- | ------ |
+| Particle Count      | 640k   | 80k            | -87.5% |
+| three-vendor.js     | 1040KB | 231KB (Brotli) | -77.8% |
+| animation-vendor.js | 116KB  | 34KB (Brotli)  | -70.7% |
+| LCP (esperado)      | ~4s    | <2.5s          | ~40%   |
+| PageSpeed (target)  | ~70    | >90            | +20pts |
 
 ---
 
@@ -175,6 +190,7 @@ jhedai-redesign/
 En `robots.txt`:
 
 **Permitidos:**
+
 - ✅ Googlebot, Bingbot, DuckDuckBot
 - ✅ **GPTBot** (OpenAI ChatGPT)
 - ✅ **Claude-Web** (Anthropic Claude)
@@ -184,6 +200,7 @@ En `robots.txt`:
 - ✅ **CCBot** (Common Crawl)
 
 **Bloqueados:**
+
 - ❌ AhrefsBot, SemrushBot (SEO scrapers)
 - ❌ DotBot, MJ12bot
 
@@ -199,6 +216,7 @@ bash scripts/test-seo.sh
 ```
 
 Verifica:
+
 - Accesibilidad del sitio
 - robots.txt y sitemap.xml
 - Schema.org JSON-LD
@@ -212,6 +230,7 @@ Verifica:
 Ver guía completa: **[SEO_VALIDATION.md](SEO_VALIDATION.md)**
 
 **URLs clave:**
+
 - Google Rich Results: https://search.google.com/test/rich-results
 - Schema Validator: https://validator.schema.org
 - PageSpeed Insights: https://pagespeed.web.dev
@@ -248,6 +267,7 @@ npm run deploy:cloudflare
 ```
 
 **Beneficios Cloudflare:**
+
 - ⚡ TTFB <200ms (vs ~800ms Vercel)
 - 🌍 330+ edge locations (vs 30 Vercel)
 - 🤖 Pre-rendering para crawlers (Worker middleware)
@@ -263,10 +283,11 @@ npm run deploy:cloudflare
 ```tsx
 // src/components/Analytics.tsx
 const USE_PLAUSIBLE = true;
-const PLAUSIBLE_DOMAIN = 'jhedai.com';
+const PLAUSIBLE_DOMAIN = "jhedai.com";
 ```
 
 **Ventajas:**
+
 - Sin cookies (GDPR-friendly)
 - No consent banner needed
 - Lightweight (~1KB)
@@ -276,7 +297,7 @@ const PLAUSIBLE_DOMAIN = 'jhedai.com';
 
 ```tsx
 // src/components/Analytics.tsx
-const GTM_ID = 'GTM-XXXXXX';
+const GTM_ID = "GTM-XXXXXX";
 const USE_GTM = true;
 ```
 
@@ -298,14 +319,18 @@ Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
 ## 🌐 Backend Integration
 
-**API Base URL**: `https://jhedai-api-production.up.railway.app/api/v1`
+**API Worker (Cloudflare)**: `https://jhedai-api.edison-985.workers.dev`
 
 Endpoints disponibles:
-- `POST /contact` - Formulario contacto
-- `GET /blog/posts` - Lista de posts
-- `GET /blog/posts/:slug` - Post individual
 
-Ver: `src/lib/api.ts`
+- `GET /api/blog/posts` - Lista de posts (con paginacion y filtros)
+- `GET /api/blog/posts/:slug` - Post individual
+- `GET /api/blog/categories` - Categorias del blog
+- `GET /api/members` - Miembros del equipo
+- `POST /api/contact` - Formulario contacto
+- `GET /api/services` - Servicios
+
+Ver: `src/lib/api.ts` y `src/lib/apiClient.ts`
 
 ---
 
@@ -313,7 +338,7 @@ Ver: `src/lib/api.ts`
 
 - **[CLOUDFLARE_MIGRATION.md](CLOUDFLARE_MIGRATION.md)** - Guía paso a paso migración Cloudflare
 - **[SEO_VALIDATION.md](SEO_VALIDATION.md)** - Checklist completo validación SEO
-- **[functions/_middleware.ts](functions/_middleware.ts)** - Worker pre-rendering crawlers
+- **[functions/\_middleware.ts](functions/_middleware.ts)** - Worker pre-rendering crawlers
 
 ---
 
@@ -322,55 +347,56 @@ Ver: `src/lib/api.ts`
 ### Agregar Nueva Página
 
 1. Crear componente en `src/pages/`:
+
 ```tsx
 // src/pages/NuevaPagina.tsx
-import SEOHead from '../components/SEOHead';
+import SEOHead from "../components/SEOHead";
 
 const NuevaPagina = () => {
-    return (
-        <>
-            <SEOHead
-                title="Título de la Página"
-                description="Descripción SEO"
-                canonical="/nueva-pagina"
-            />
-            <main>
-                {/* Contenido */}
-            </main>
-        </>
-    );
+  return (
+    <>
+      <SEOHead
+        title="Título de la Página"
+        description="Descripción SEO"
+        canonical="/nueva-pagina"
+      />
+      <main>{/* Contenido */}</main>
+    </>
+  );
 };
 
 export default NuevaPagina;
 ```
 
 2. Agregar ruta en `src/App.tsx`:
+
 ```tsx
 <Route path="/nueva-pagina" element={<NuevaPagina />} />
 ```
 
 3. Agregar a sitemap en `vite.config.ts`:
+
 ```ts
 dynamicRoutes: [
-    // ...
-    '/nueva-pagina',
-]
+  // ...
+  "/nueva-pagina",
+];
 ```
 
 ### Agregar Schema.org
 
 ```tsx
-import { JsonLd } from 'react-schemaorg';
-import type { Organization } from 'schema-dts';
+import { JsonLd } from "react-schemaorg";
+import type { Organization } from "schema-dts";
 
 <JsonLd<Organization>
-    item={{
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'JhedAI',
-        // ...
-    }}
-/>
+  item={{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "JhedAI",
+    // ...
+  }}
+/>;
 ```
 
 ---
@@ -380,12 +406,14 @@ import type { Organization } from 'schema-dts';
 ### Build Errors
 
 **Error: Type imports**
+
 ```bash
 # Usar 'import type' para tipos
 import type { BlogPosting } from 'schema-dts';
 ```
 
 **Error: Peer dependencies**
+
 ```bash
 # Usar flag legacy-peer-deps (ya configurado en .npmrc)
 npm install --legacy-peer-deps
@@ -394,10 +422,12 @@ npm install --legacy-peer-deps
 ### Performance Issues
 
 **3D lag en mobile:**
+
 - LOD system ajusta automáticamente partículas
 - Verificar `deviceDetection.ts`
 
 **Scroll jump 3D:**
+
 - useInViewport con `keepMounted=true` previene unmount
 - frameloop control en lugar de conditional rendering
 
@@ -405,7 +435,7 @@ npm install --legacy-peer-deps
 
 ## 📄 Licencia
 
-Copyright © 2025 JhedAI. Todos los derechos reservados.
+Copyright © 2026 JhedAI. Todos los derechos reservados.
 
 ---
 
@@ -420,8 +450,9 @@ Desarrollado con ❤️ por el equipo de JhedAI.
 ## 🙏 Créditos
 
 Optimizaciones SEO y performance implementadas con asistencia de:
+
 - Claude Sonnet 4.5 (Anthropic)
 
 ---
 
-**Última actualización**: 2026-02-24
+**Ultima actualizacion**: 2026-03-20

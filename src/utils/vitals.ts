@@ -4,7 +4,7 @@
  * Based on Google's web-vitals library
  */
 
-import { onCLS, onINP, onLCP, onFCP, onTTFB, type Metric } from 'web-vitals';
+import { onCLS, onINP, onLCP, onFCP, onTTFB, type Metric } from "web-vitals";
 
 /**
  * Send metric to analytics endpoint
@@ -13,51 +13,43 @@ import { onCLS, onINP, onLCP, onFCP, onTTFB, type Metric } from 'web-vitals';
  * NOTA: Temporalmente desactivado hasta configurar el endpoint en Cloudflare
  */
 function sendToAnalytics(metric: Metric) {
-    // Solo logear en consola por ahora
-    // TODO: Reactivar cuando el Worker de API tenga el endpoint /api/analytics configurado
-    if (import.meta.env.DEV) {
-        console.debug('[Analytics] Would send:', metric.name, metric.value);
-    }
+  const body = JSON.stringify({
+    name: metric.name,
+    value: metric.value,
+    rating: metric.rating,
+    delta: metric.delta,
+    id: metric.id,
+    navigationType: metric.navigationType,
+  });
 
-    // Código desactivado temporalmente:
-    /*
-    const body = JSON.stringify({
-        name: metric.name,
-        value: metric.value,
-        rating: metric.rating,
-        delta: metric.delta,
-        id: metric.id,
-        navigationType: metric.navigationType,
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon("/api/analytics", body);
+  } else {
+    fetch("/api/analytics", {
+      body,
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json" },
     });
-
-    // Use sendBeacon if available (preferred - works during page unload)
-    if (navigator.sendBeacon) {
-        navigator.sendBeacon('/api/analytics', body);
-    } else {
-        // Fallback to fetch with keepalive
-        fetch('/api/analytics', {
-            body,
-            method: 'POST',
-            keepalive: true,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-    }
-    */
+  }
 }
 
 /**
  * Log metric to console (development only)
  */
 function logMetric(metric: Metric) {
-    const emoji = metric.rating === 'good' ? '✅' : metric.rating === 'needs-improvement' ? '⚠️' : '❌';
+  const emoji =
+    metric.rating === "good"
+      ? "✅"
+      : metric.rating === "needs-improvement"
+        ? "⚠️"
+        : "❌";
 
-    console.log(`${emoji} ${metric.name}:`, {
-        value: metric.value,
-        rating: metric.rating,
-        delta: metric.delta,
-    });
+  console.log(`${emoji} ${metric.name}:`, {
+    value: metric.value,
+    rating: metric.rating,
+    delta: metric.delta,
+  });
 }
 
 /**
@@ -72,30 +64,30 @@ function logMetric(metric: Metric) {
  * - TTFB (Time to First Byte): < 800ms good
  */
 export function initVitals() {
-    // Core Web Vitals (ranking factors)
-    onLCP((metric) => {
-        logMetric(metric);
-        sendToAnalytics(metric);
-    });
+  // Core Web Vitals (ranking factors)
+  onLCP((metric) => {
+    logMetric(metric);
+    sendToAnalytics(metric);
+  });
 
-    onINP((metric) => {
-        logMetric(metric);
-        sendToAnalytics(metric);
-    });
+  onINP((metric) => {
+    logMetric(metric);
+    sendToAnalytics(metric);
+  });
 
-    onCLS((metric) => {
-        logMetric(metric);
-        sendToAnalytics(metric);
-    });
+  onCLS((metric) => {
+    logMetric(metric);
+    sendToAnalytics(metric);
+  });
 
-    // Additional metrics (not ranking factors but helpful)
-    onFCP((metric) => {
-        logMetric(metric);
-        sendToAnalytics(metric);
-    });
+  // Additional metrics (not ranking factors but helpful)
+  onFCP((metric) => {
+    logMetric(metric);
+    sendToAnalytics(metric);
+  });
 
-    onTTFB((metric) => {
-        logMetric(metric);
-        sendToAnalytics(metric);
-    });
+  onTTFB((metric) => {
+    logMetric(metric);
+    sendToAnalytics(metric);
+  });
 }

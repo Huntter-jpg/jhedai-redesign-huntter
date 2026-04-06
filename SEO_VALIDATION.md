@@ -7,6 +7,7 @@ Esta guía te ayudará a validar todas las optimizaciones SEO implementadas.
 ## 🎯 URLs de Testing
 
 ### Producción Actual
+
 - **Vercel**: https://jhedai-redesign.vercel.app
 - **Sitemap**: https://jhedai-redesign.vercel.app/sitemap.xml
 - **Robots**: https://jhedai-redesign.vercel.app/robots.txt
@@ -18,11 +19,13 @@ Esta guía te ayudará a validar todas las optimizaciones SEO implementadas.
 ### 1. Structured Data (Schema.org) - CRÍTICO
 
 #### A. Google Rich Results Test
+
 ```
 https://search.google.com/test/rich-results?url=https://jhedai-redesign.vercel.app
 ```
 
 **Qué buscar:**
+
 - ✅ Organization schema detectado
 - ✅ Sin errores de validación
 - ✅ Logo visible en preview
@@ -31,11 +34,13 @@ https://search.google.com/test/rich-results?url=https://jhedai-redesign.vercel.a
 **Screenshot recomendado:** Guardar resultado para documentación
 
 #### B. Schema.org Validator
+
 ```
 https://validator.schema.org/#url=https://jhedai-redesign.vercel.app
 ```
 
 **Qué buscar:**
+
 - ✅ JSON-LD válido
 - ✅ Sin warnings
 - ✅ Todos los campos requeridos presentes
@@ -44,9 +49,10 @@ https://validator.schema.org/#url=https://jhedai-redesign.vercel.app
 #### C. Testing Manual de Schemas
 
 **Página de Blog** (cuando esté disponible):
+
 ```tsx
 // Verificar que BlogPostingSchema está implementado
-import BlogPostingSchema from '../components/schemas/BlogPostingSchema';
+import BlogPostingSchema from "../components/schemas/BlogPostingSchema";
 
 <BlogPostingSchema
   title="Título del post"
@@ -55,22 +61,23 @@ import BlogPostingSchema from '../components/schemas/BlogPostingSchema';
   publishedAt="2025-02-24T12:00:00Z"
   featuredImage="https://..."
   category="Industria"
-/>
+/>;
 ```
 
 **Página con FAQs** (cuando esté disponible):
+
 ```tsx
-import FAQPageSchema from '../components/schemas/FAQPageSchema';
+import FAQPageSchema from "../components/schemas/FAQPageSchema";
 
 const faqs = [
   {
     question: "¿Qué es JhedAI?",
-    answer: "JhedAI es una consultora..."
+    answer: "JhedAI es una consultora...",
   },
   // ...más FAQs
 ];
 
-<FAQPageSchema faqs={faqs} />
+<FAQPageSchema faqs={faqs} />;
 ```
 
 ---
@@ -78,11 +85,13 @@ const faqs = [
 ### 2. Meta Tags y Open Graph
 
 #### A. Facebook Sharing Debugger
+
 ```
 https://developers.facebook.com/tools/debug/?q=https://jhedai-redesign.vercel.app
 ```
 
 **Qué buscar:**
+
 - ✅ og:title correcto
 - ✅ og:description presente
 - ✅ og:image carga correctamente (1200x630px recomendado)
@@ -92,22 +101,26 @@ https://developers.facebook.com/tools/debug/?q=https://jhedai-redesign.vercel.ap
 **Acción:** Click "Scrape Again" para forzar refresh
 
 #### B. Twitter Card Validator
+
 ```
 https://cards-dev.twitter.com/validator
 ```
 
 **Qué buscar:**
+
 - ✅ Card type: summary_large_image
 - ✅ Title visible
 - ✅ Description visible
 - ✅ Image preview correcto
 
 #### C. LinkedIn Post Inspector
+
 ```
 https://www.linkedin.com/post-inspector/
 ```
 
 **Qué buscar:**
+
 - ✅ Preview correcto
 - ✅ Image visible
 - ✅ Title y description presentes
@@ -117,11 +130,13 @@ https://www.linkedin.com/post-inspector/
 ### 3. Core Web Vitals y Performance
 
 #### A. PageSpeed Insights (Desktop)
+
 ```
 https://pagespeed.web.dev/?url=https://jhedai-redesign.vercel.app&form_factor=desktop
 ```
 
 **Targets a alcanzar:**
+
 - ✅ Performance Score: **>90**
 - ✅ LCP (Largest Contentful Paint): **<2.5s**
 - ✅ INP (Interaction to Next Paint): **<200ms**
@@ -130,31 +145,37 @@ https://pagespeed.web.dev/?url=https://jhedai-redesign.vercel.app&form_factor=de
 - ✅ TTFB (Time to First Byte): **<800ms**
 
 **Estado actual esperado:**
+
 - Performance: ~75-85 (Vercel)
 - Performance esperado Cloudflare: >90
 
 #### B. PageSpeed Insights (Mobile)
+
 ```
 https://pagespeed.web.dev/?url=https://jhedai-redesign.vercel.app&form_factor=mobile
 ```
 
 **Targets a alcanzar:**
+
 - ✅ Performance Score: **>80**
 - ✅ LCP: **<2.5s**
 - ✅ INP: **<200ms**
 - ✅ CLS: **<0.1**
 
 #### C. WebPageTest
+
 ```
 https://www.webpagetest.org/
 ```
 
 **Configuración:**
+
 - Test Location: Santiago, Chile (más cercano)
 - Browser: Chrome
 - Connection: 4G
 
 **Qué analizar:**
+
 - ✅ First Byte Time
 - ✅ Start Render
 - ✅ Speed Index
@@ -163,6 +184,7 @@ https://www.webpagetest.org/
 #### D. Chrome DevTools Lighthouse
 
 **Ejecutar localmente:**
+
 ```bash
 # 1. Abrir Chrome DevTools (F12)
 # 2. Tab "Lighthouse"
@@ -171,6 +193,7 @@ https://www.webpagetest.org/
 ```
 
 **Targets:**
+
 - ✅ Performance: >90
 - ✅ SEO: 100
 - ✅ Best Practices: >90
@@ -181,16 +204,19 @@ https://www.webpagetest.org/
 ### 4. Sitemap y Robots.txt
 
 #### A. Sitemap.xml Validation
+
 ```
 https://www.xml-sitemaps.com/validate-xml-sitemap.html
 ```
 
 **URL a validar:**
+
 ```
 https://jhedai-redesign.vercel.app/sitemap.xml
 ```
 
 **Qué verificar:**
+
 - ✅ XML bien formado
 - ✅ Todas las URLs válidas (200 status)
 - ✅ lastmod dates presentes
@@ -200,11 +226,13 @@ https://jhedai-redesign.vercel.app/sitemap.xml
 #### B. Robots.txt Tester (Google Search Console)
 
 **Manual check:**
+
 ```bash
 curl https://jhedai-redesign.vercel.app/robots.txt
 ```
 
 **Verificar:**
+
 - ✅ Sitemap URL presente
 - ✅ AI crawlers configurados (GPTBot, Claude-Web, etc.)
 - ✅ Crawl-delay apropiado
@@ -216,11 +244,13 @@ curl https://jhedai-redesign.vercel.app/robots.txt
 ### 5. Compresión y Optimización
 
 #### A. Compression Test
+
 ```
 https://www.giftofspeed.com/gzip-test/
 ```
 
 **Qué verificar:**
+
 - ✅ Gzip enabled: YES
 - ✅ Compression ratio: >60%
 - ✅ Brotli support (mejor que Gzip)
@@ -236,6 +266,7 @@ curl -H "Accept-Encoding: br" -I https://jhedai-redesign.vercel.app/assets/index
 ```
 
 **Headers esperados:**
+
 ```
 Content-Encoding: br (o gzip)
 Cache-Control: public, max-age=31536000, immutable (para assets)
@@ -244,6 +275,7 @@ Cache-Control: public, max-age=31536000, immutable (para assets)
 #### C. Bundle Size Analysis
 
 **Verificar chunks generados:**
+
 ```bash
 npm run build
 
@@ -254,6 +286,7 @@ npm run build
 ```
 
 **Visualizar bundle:**
+
 ```bash
 npx vite-bundle-visualizer
 ```
@@ -270,6 +303,7 @@ curl -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html
 ```
 
 **Verificar:**
+
 - ✅ HTML completo retornado (no shell vacío)
 - ✅ Meta tags presentes en HTML
 - ✅ Schema.org JSON-LD en <head>
@@ -282,6 +316,7 @@ curl -A "GPTBot/1.0 (+https://openai.com/gptbot)" \
 ```
 
 **Verificar:**
+
 - ✅ HTML accesible
 - ✅ robots.txt permite GPTBot
 - ✅ Sin bloqueos
@@ -294,12 +329,14 @@ curl -A "Claude-Web/1.0 (+https://www.anthropic.com)" \
 ```
 
 **Verificar:**
+
 - ✅ HTML accesible
 - ✅ Crawl-delay respetado en robots.txt
 
 #### D. User-Agent Coverage
 
 **Crawlers configurados en robots.txt:**
+
 - ✅ Googlebot
 - ✅ Bingbot
 - ✅ DuckDuckBot
@@ -313,6 +350,7 @@ curl -A "Claude-Web/1.0 (+https://www.anthropic.com)" \
 - ✅ CCBot (Common Crawl)
 
 **Crawlers bloqueados:**
+
 - ❌ AhrefsBot (SEO tool)
 - ❌ SemrushBot (SEO tool)
 - ❌ DotBot
@@ -334,6 +372,7 @@ curl -A "Claude-Web/1.0 (+https://www.anthropic.com)" \
 **Método recomendado: HTML tag**
 
 Agregar en `src/components/SEOHead.tsx`:
+
 ```tsx
 <meta name="google-site-verification" content="tu-codigo-aqui" />
 ```
@@ -345,6 +384,7 @@ Agregar en `src/components/SEOHead.tsx`:
 3. Click "Enviar"
 
 **Monitorear:**
+
 - ✅ Páginas descubiertas
 - ✅ Páginas indexadas
 - ✅ Errores de cobertura
@@ -357,13 +397,15 @@ Agregar en `src/components/SEOHead.tsx`:
 #### A. Si usas Plausible
 
 **Configuración:**
+
 ```tsx
 // src/components/Analytics.tsx
 const USE_PLAUSIBLE = true;
-const PLAUSIBLE_DOMAIN = 'jhedai.com';
+const PLAUSIBLE_DOMAIN = "jhedai.com";
 ```
 
 **Verificar:**
+
 1. Dashboard Plausible: https://plausible.io/jhedai.com
 2. Real-time visitors visible
 3. Page views tracking
@@ -372,12 +414,14 @@ const PLAUSIBLE_DOMAIN = 'jhedai.com';
 #### B. Si usas Google Tag Manager
 
 **Verificación:**
+
 ```bash
 # Verificar script GTM cargado
 curl https://jhedai-redesign.vercel.app/ | grep "googletagmanager"
 ```
 
 **Google Tag Assistant:**
+
 1. Instalar extensión Chrome: "Tag Assistant Companion"
 2. Visitar sitio
 3. Verificar tags disparados
@@ -391,6 +435,7 @@ https://search.google.com/test/mobile-friendly?url=https://jhedai-redesign.verce
 ```
 
 **Qué verificar:**
+
 - ✅ Page is mobile-friendly: YES
 - ✅ Text readable without zoom
 - ✅ Tap targets appropriately sized
@@ -405,6 +450,7 @@ curl -I https://jhedai-redesign.vercel.app/
 ```
 
 **Headers esperados (si Cloudflare activo):**
+
 ```
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
@@ -413,6 +459,7 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 ```
 
 **Test online:**
+
 ```
 https://securityheaders.com/?q=https://jhedai-redesign.vercel.app
 ```
@@ -425,26 +472,26 @@ https://securityheaders.com/?q=https://jhedai-redesign.vercel.app
 
 ### Estado Actual (Vercel)
 
-| Métrica | Target | Esperado Vercel |
-|---------|--------|-----------------|
-| PageSpeed (Desktop) | >90 | ~75-85 |
-| PageSpeed (Mobile) | >80 | ~70-80 |
-| LCP | <2.5s | ~3-4s |
-| TTFB | <800ms | ~600-800ms |
-| SEO Score | 100 | 95-100 |
-| Gzip Compression | >60% | ~65% |
-| Brotli Compression | >70% | ~75% |
+| Métrica             | Target | Esperado Vercel |
+| ------------------- | ------ | --------------- |
+| PageSpeed (Desktop) | >90    | ~75-85          |
+| PageSpeed (Mobile)  | >80    | ~70-80          |
+| LCP                 | <2.5s  | ~3-4s           |
+| TTFB                | <800ms | ~600-800ms      |
+| SEO Score           | 100    | 95-100          |
+| Gzip Compression    | >60%   | ~65%            |
+| Brotli Compression  | >70%   | ~75%            |
 
 ### Estado Esperado (Cloudflare)
 
-| Métrica | Target | Esperado Cloudflare |
-|---------|--------|---------------------|
-| PageSpeed (Desktop) | >90 | **90-95** ⚡ |
-| PageSpeed (Mobile) | >80 | **85-90** ⚡ |
-| LCP | <2.5s | **<2.5s** ⚡ |
-| TTFB | <800ms | **<200ms** ⚡ |
-| SEO Score | 100 | **100** ⚡ |
-| Edge Locations | - | **330+** 🌍 |
+| Métrica             | Target | Esperado Cloudflare |
+| ------------------- | ------ | ------------------- |
+| PageSpeed (Desktop) | >90    | **90-95** ⚡        |
+| PageSpeed (Mobile)  | >80    | **85-90** ⚡        |
+| LCP                 | <2.5s  | **<2.5s** ⚡        |
+| TTFB                | <800ms | **<200ms** ⚡       |
+| SEO Score           | 100    | **100** ⚡          |
+| Edge Locations      | -      | **330+** 🌍         |
 
 ---
 
@@ -453,6 +500,7 @@ https://securityheaders.com/?q=https://jhedai-redesign.vercel.app
 ### Problema: Schema.org no detectado
 
 **Solución:**
+
 ```bash
 # Verificar que el script está en el HTML
 curl https://jhedai-redesign.vercel.app/ | grep "application/ld+json"
@@ -463,6 +511,7 @@ curl https://jhedai-redesign.vercel.app/ | grep "application/ld+json"
 ### Problema: OG image no carga
 
 **Checklist:**
+
 - ✅ Imagen es >200KB? (comprimir)
 - ✅ URL absoluta? (no relativa)
 - ✅ Dimensiones 1200x630px?
@@ -471,6 +520,7 @@ curl https://jhedai-redesign.vercel.app/ | grep "application/ld+json"
 ### Problema: Core Web Vitals pobres
 
 **Acciones:**
+
 1. Verificar lazy loading de imágenes
 2. Revisar bundle sizes (chunks >500KB?)
 3. Verificar 3D canvas con `frameloop="never"` cuando off-screen
@@ -479,10 +529,12 @@ curl https://jhedai-redesign.vercel.app/ | grep "application/ld+json"
 ### Problema: Crawlers no ven contenido
 
 **Para SPA (Vercel actual):**
+
 - ⚠️ Normal - Crawlers ven shell HTML básico
 - ✅ Meta tags y Schema.org están en <head> (suficiente)
 
 **Solución definitiva:**
+
 - Migrar a Cloudflare Pages + Worker middleware
 - Pre-rendering automático para crawlers
 
@@ -536,18 +588,21 @@ curl https://jhedai-redesign.vercel.app/ | grep "application/ld+json"
 ## 🚀 Próximo Paso Recomendado
 
 **Opción 1: Validar todo ahora** ⭐
+
 1. Ejecutar todos los tests de esta guía
 2. Documentar resultados
 3. Fix issues encontrados
 4. Re-test
 
 **Opción 2: Deploy a Cloudflare**
+
 1. Seguir `CLOUDFLARE_MIGRATION.md`
 2. Deploy staging primero
 3. Validar en staging
 4. Migrar DNS producción
 
 **Opción 3: Monitor durante 1 semana**
+
 1. Configurar Search Console
 2. Activar Analytics
 3. Monitorear métricas

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Hook that detects when an element is in the viewport using IntersectionObserver
@@ -19,31 +19,35 @@ import { useEffect, useRef, useState } from 'react';
  * const { ref, isInViewport } = useInViewport(0.1, '0px', true);
  * return <div ref={ref}><Canvas frameloop={isInViewport ? 'always' : 'never'}>...</Canvas></div>
  */
-export const useInViewport = (threshold = 0.1, rootMargin = '0px', keepMounted = false) => {
-    const ref = useRef<HTMLDivElement>(null);
-    // If keepMounted is true, start as visible to avoid initial jump
-    const [isInViewport, setIsInViewport] = useState(keepMounted ? true : false);
+export const useInViewport = (
+  threshold = 0.1,
+  rootMargin = "0px",
+  keepMounted = false,
+) => {
+  const ref = useRef<HTMLDivElement>(null);
+  // If keepMounted is true, start as visible to avoid initial jump
+  const [isInViewport, setIsInViewport] = useState(keepMounted ? true : false);
 
-    useEffect(() => {
-        const element = ref.current;
-        if (!element) return;
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsInViewport(entry.isIntersecting);
-            },
-            {
-                threshold,
-                rootMargin,
-            }
-        );
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      {
+        threshold,
+        rootMargin,
+      },
+    );
 
-        observer.observe(element);
+    observer.observe(element);
 
-        return () => {
-            observer.disconnect();
-        };
-    }, [threshold, rootMargin]);
+    return () => {
+      observer.disconnect();
+    };
+  }, [threshold, rootMargin]);
 
-    return { ref, isInViewport };
+  return { ref, isInViewport };
 };

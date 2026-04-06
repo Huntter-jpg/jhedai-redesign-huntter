@@ -1,77 +1,83 @@
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useMemo, useRef, memo } from 'react';
-import * as THREE from 'three';
-import { generateFibonacciSphere, generateEscapedParticles } from '../utils/fibonacciSphere';
-import { getParticleCount, getLODConfig } from '../utils/deviceDetection';
-import { useInViewport } from '../hooks/useInViewport';
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useMemo, useRef, memo } from "react";
+import * as THREE from "three";
+import {
+  generateFibonacciSphere,
+  generateEscapedParticles,
+} from "../utils/fibonacciSphere";
+import { getParticleCount, getLODConfig } from "../utils/deviceDetection";
+import { useInViewport } from "../hooks/useInViewport";
 
 // Configuration for the giant particle sphere
 const SPHERE_CONFIG = {
-    baseParticleCount: 80000,  // Base count for high-end desktop
-    radius: 4.55,  // Reduced by 30% from 6.5
-    pulseAmplitude: 0.06,
-    pulseSpeed: 0.4,
-    rotationSpeed: { x: 0.03, y: 0.05, z: 0.01 }, // radians/second
-    cameraPosition: [0, 0, 20] as [number, number, number],  // Closer camera
-    cameraFov: 50,
-    escapePercentage: 0.12, // 12% of particles escape the sphere
+  baseParticleCount: 80000, // Base count for high-end desktop
+  radius: 4.55, // Reduced by 30% from 6.5
+  pulseAmplitude: 0.06,
+  pulseSpeed: 0.4,
+  rotationSpeed: { x: 0.03, y: 0.05, z: 0.01 }, // radians/second
+  cameraPosition: [0, 0, 20] as [number, number, number], // Closer camera
+  cameraFov: 50,
+  escapePercentage: 0.12, // 12% of particles escape the sphere
 };
 
 const SphereParticles = () => {
-    const pointsRef = useRef<THREE.Points>(null);
-    const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const pointsRef = useRef<THREE.Points>(null);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
 
-    // Calculate particle count based on device performance
-    const particleCount = getParticleCount(SPHERE_CONFIG.baseParticleCount);
+  // Calculate particle count based on device performance
+  const particleCount = getParticleCount(SPHERE_CONFIG.baseParticleCount);
 
-    const { positions, sizes, randoms } = useMemo(() => {
-        // Generate main sphere particles using Fibonacci distribution
-        const spherePositions = generateFibonacciSphere(particleCount, SPHERE_CONFIG.radius);
+  const { positions, sizes, randoms } = useMemo(() => {
+    // Generate main sphere particles using Fibonacci distribution
+    const spherePositions = generateFibonacciSphere(
+      particleCount,
+      SPHERE_CONFIG.radius,
+    );
 
-        // Generate escaped particles for depth
-        const escapedPositions = generateEscapedParticles(
-            spherePositions,
-            particleCount,
-            SPHERE_CONFIG.escapePercentage
-        );
+    // Generate escaped particles for depth
+    const escapedPositions = generateEscapedParticles(
+      spherePositions,
+      particleCount,
+      SPHERE_CONFIG.escapePercentage,
+    );
 
-        const escapedCount = escapedPositions.length / 3;
-        const totalCount = particleCount + escapedCount;
+    const escapedCount = escapedPositions.length / 3;
+    const totalCount = particleCount + escapedCount;
 
-        // Combine sphere and escaped particles
-        const combinedPositions = new Float32Array(totalCount * 3);
-        combinedPositions.set(spherePositions, 0);
-        combinedPositions.set(escapedPositions, particleCount * 3);
+    // Combine sphere and escaped particles
+    const combinedPositions = new Float32Array(totalCount * 3);
+    combinedPositions.set(spherePositions, 0);
+    combinedPositions.set(escapedPositions, particleCount * 3);
 
-        // Generate sizes and random values for all particles
-        const sizes = new Float32Array(totalCount);
-        const randoms = new Float32Array(totalCount);
+    // Generate sizes and random values for all particles
+    const sizes = new Float32Array(totalCount);
+    const randoms = new Float32Array(totalCount);
 
-        for (let i = 0; i < totalCount; i++) {
-            // Sphere particles: sizes 1.0-3.5
-            // Escaped particles: smaller sizes 0.5-2.0
-            const isEscaped = i >= particleCount;
-            sizes[i] = isEscaped
-                ? 0.5 + Math.random() * 1.5
-                : 1.0 + Math.random() * 2.5;
-            randoms[i] = Math.random();
-        }
+    for (let i = 0; i < totalCount; i++) {
+      // Sphere particles: sizes 1.0-3.5
+      // Escaped particles: smaller sizes 0.5-2.0
+      const isEscaped = i >= particleCount;
+      sizes[i] = isEscaped
+        ? 0.5 + Math.random() * 1.5
+        : 1.0 + Math.random() * 2.5;
+      randoms[i] = Math.random();
+    }
 
-        return { positions: combinedPositions, sizes, randoms };
-    }, [particleCount]);
+    return { positions: combinedPositions, sizes, randoms };
+  }, [particleCount]);
 
-    const shaderMaterial = useMemo(() => {
-        return new THREE.ShaderMaterial({
-            uniforms: {
-                uTime: { value: 0 },
-                uColor1: { value: new THREE.Color('#003865') }, // navy
-                uColor2: { value: new THREE.Color('#00A9E0') }, // cyan
-                uColor3: { value: new THREE.Color('#4FC3F7') }, // light cyan
-                uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uPulseAmplitude: { value: SPHERE_CONFIG.pulseAmplitude },
-                uPulseSpeed: { value: SPHERE_CONFIG.pulseSpeed },
-            },
-            vertexShader: `
+  const shaderMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uColor1: { value: new THREE.Color("#003865") }, // navy
+        uColor2: { value: new THREE.Color("#00A9E0") }, // cyan
+        uColor3: { value: new THREE.Color("#4FC3F7") }, // light cyan
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+        uPulseAmplitude: { value: SPHERE_CONFIG.pulseAmplitude },
+        uPulseSpeed: { value: SPHERE_CONFIG.pulseSpeed },
+      },
+      vertexShader: `
                 attribute float aSize;
                 attribute float aRandom;
                 uniform float uTime;
@@ -120,7 +126,7 @@ const SphereParticles = () => {
                     gl_Position = projectionMatrix * mvPosition;
                 }
             `,
-            fragmentShader: `
+      fragmentShader: `
                 uniform vec3 uColor1;
                 uniform vec3 uColor2;
                 uniform vec3 uColor3;
@@ -153,54 +159,77 @@ const SphereParticles = () => {
                     gl_FragColor = vec4(color, alpha);
                 }
             `,
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-        });
-    }, []);
-
-    useFrame((state) => {
-        if (!pointsRef.current || !materialRef.current) return;
-        const t = state.clock.getElapsedTime();
-
-        // === ANIMATION LAYER 4: Global rotation ===
-        pointsRef.current.rotation.x = t * SPHERE_CONFIG.rotationSpeed.x;
-        pointsRef.current.rotation.y = t * SPHERE_CONFIG.rotationSpeed.y;
-        pointsRef.current.rotation.z = t * SPHERE_CONFIG.rotationSpeed.z;
-
-        // Update shader time uniform
-        materialRef.current.uniforms.uTime.value = t;
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
     });
+  }, []);
 
-    return (
-        <points ref={pointsRef}>
-            <bufferGeometry>
-                <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-                <bufferAttribute attach="attributes-aSize" args={[sizes, 1]} />
-                <bufferAttribute attach="attributes-aRandom" args={[randoms, 1]} />
-            </bufferGeometry>
-            <primitive ref={materialRef} object={shaderMaterial} attach="material" />
-        </points>
-    );
+  useFrame((state) => {
+    if (!pointsRef.current || !materialRef.current) return;
+    const t = state.clock.getElapsedTime();
+
+    // === ANIMATION LAYER 4: Global rotation ===
+    pointsRef.current.rotation.x = t * SPHERE_CONFIG.rotationSpeed.x;
+    pointsRef.current.rotation.y = t * SPHERE_CONFIG.rotationSpeed.y;
+    pointsRef.current.rotation.z = t * SPHERE_CONFIG.rotationSpeed.z;
+
+    // Update shader time uniform
+    materialRef.current.uniforms.uTime.value = t;
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-aSize" args={[sizes, 1]} />
+        <bufferAttribute attach="attributes-aRandom" args={[randoms, 1]} />
+      </bufferGeometry>
+      <primitive ref={materialRef} object={shaderMaterial} attach="material" />
+    </points>
+  );
 };
 
 const ParticleSphere = () => {
-    const { ref, isInViewport } = useInViewport(0.1, '200px', true);
-    const lodConfig = getLODConfig();
+  const { ref, isInViewport } = useInViewport(0.1, "200px", true);
+  const lodConfig = getLODConfig();
 
-    return (
-        <div ref={ref} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-            <Canvas
-                camera={{ position: SPHERE_CONFIG.cameraPosition, fov: SPHERE_CONFIG.cameraFov }}
-                dpr={lodConfig.dpr}
-                gl={{ alpha: true, antialias: lodConfig.antialias, powerPreference: 'low-power' }}
-                frameloop={isInViewport ? 'always' : 'never'}
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-            >
-                <SphereParticles />
-            </Canvas>
-        </div>
-    );
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+      }}
+    >
+      <Canvas
+        camera={{
+          position: SPHERE_CONFIG.cameraPosition,
+          fov: SPHERE_CONFIG.cameraFov,
+        }}
+        dpr={lodConfig.dpr}
+        gl={{
+          alpha: true,
+          antialias: lodConfig.antialias,
+          powerPreference: "low-power",
+        }}
+        frameloop={isInViewport ? "always" : "never"}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <SphereParticles />
+      </Canvas>
+    </div>
+  );
 };
 
 export default memo(ParticleSphere);

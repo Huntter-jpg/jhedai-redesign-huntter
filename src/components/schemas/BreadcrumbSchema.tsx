@@ -1,13 +1,13 @@
-import { JsonLd } from 'react-schemaorg';
-import type { BreadcrumbList } from 'schema-dts';
+import { JsonLd } from "react-schemaorg";
+import type { BreadcrumbList } from "schema-dts";
 
 interface BreadcrumbItem {
-    name: string;
-    url: string;
+  name: string;
+  url: string;
 }
 
 interface BreadcrumbSchemaProps {
-    items: BreadcrumbItem[];
+  items: BreadcrumbItem[];
 }
 
 /**
@@ -21,18 +21,18 @@ interface BreadcrumbSchemaProps {
  * ]} />
  */
 export const BreadcrumbSchema = ({ items }: BreadcrumbSchemaProps) => {
-    return (
-        <JsonLd<BreadcrumbList>
-            item={{
-                '@context': 'https://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: items.map((item, index) => ({
-                    '@type': 'ListItem',
-                    position: index + 1,
-                    name: item.name,
-                    item: item.url,
-                })),
-            }}
-        />
-    );
+  return (
+    <JsonLd<BreadcrumbList>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: item.url,
+        })),
+      }}
+    />
+  );
 };

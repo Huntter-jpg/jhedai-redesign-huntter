@@ -5,6 +5,7 @@ Esta guía te ayudará a migrar de Vercel a Cloudflare Pages para aprovechar las
 ## ¿Por qué Cloudflare Pages?
 
 ### Ventajas sobre Vercel:
+
 - ✅ **330+ edge locations** vs 30 de Vercel
 - ✅ **Mejor TTFB** (<200ms vs ~800ms)
 - ✅ **Workers** para pre-rendering de crawlers
@@ -15,14 +16,14 @@ Esta guía te ayudará a migrar de Vercel a Cloudflare Pages para aprovechar las
 
 ### Comparación de Planes:
 
-| Feature | Vercel Free | Vercel Pro | Cloudflare Free | Cloudflare Pro |
-|---------|-------------|------------|-----------------|----------------|
-| Precio | $0 | $20/mes | $0 | $20/mes |
-| Bandwidth | 100GB | 1TB | ♾️ Ilimitado | ♾️ Ilimitado |
-| Builds | 100/día | Ilimitado | 500/mes | 5,000/mes |
-| Edge Locations | 30 | 30 | 330+ | 330+ |
-| Workers | ❌ | ❌ | ✅ 100k req/día | ✅ 10M req/mes |
-| Images | ❌ | ❌ | ✅ 100k transform | ✅ 500k transform |
+| Feature        | Vercel Free | Vercel Pro | Cloudflare Free   | Cloudflare Pro    |
+| -------------- | ----------- | ---------- | ----------------- | ----------------- |
+| Precio         | $0          | $20/mes    | $0                | $20/mes           |
+| Bandwidth      | 100GB       | 1TB        | ♾️ Ilimitado      | ♾️ Ilimitado      |
+| Builds         | 100/día     | Ilimitado  | 500/mes           | 5,000/mes         |
+| Edge Locations | 30          | 30         | 330+              | 330+              |
+| Workers        | ❌          | ❌         | ✅ 100k req/día   | ✅ 10M req/mes    |
+| Images         | ❌          | ❌         | ✅ 100k transform | ✅ 500k transform |
 
 ---
 
@@ -99,6 +100,7 @@ id = "xxxxx" # Reemplazar con tu ID
 3. Subir imágenes via API o Dashboard
 
 #### Upload via API:
+
 ```bash
 curl -X POST https://api.cloudflare.com/client/v4/accounts/{account_id}/images/v1 \
   -H "Authorization: Bearer {token}" \
@@ -106,6 +108,7 @@ curl -X POST https://api.cloudflare.com/client/v4/accounts/{account_id}/images/v
 ```
 
 #### Usar en React:
+
 ```tsx
 // Antes
 <img src="/logo-jhedai.png" />
@@ -232,13 +235,13 @@ Antes de migrar DNS a Cloudflare:
 
 ## Métricas Esperadas Post-Migración
 
-| Métrica | Vercel | Cloudflare Target |
-|---------|--------|-------------------|
-| TTFB | ~800ms | **<200ms** ⚡ |
-| LCP | ~3-4s | **<2.5s** ⚡ |
-| PageSpeed Score | ~70-80 | **>90** ⚡ |
-| Edge Locations | 30 | **330+** 🌍 |
-| Bandwidth Cost | Limitado | **♾️ Ilimitado** |
+| Métrica         | Vercel   | Cloudflare Target |
+| --------------- | -------- | ----------------- |
+| TTFB            | ~800ms   | **<200ms** ⚡     |
+| LCP             | ~3-4s    | **<2.5s** ⚡      |
+| PageSpeed Score | ~70-80   | **>90** ⚡        |
+| Edge Locations  | 30       | **330+** 🌍       |
+| Bandwidth Cost  | Limitado | **♾️ Ilimitado**  |
 
 ---
 

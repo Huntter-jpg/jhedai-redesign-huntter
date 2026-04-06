@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-primario: #003865;   /* Pantone 2955 C */
-  --color-secundario: #00A9E0; /* Pantone 801 C */
-  --color-acento: #FF585D;     /* Bright Orange */
-  --color-neutro: #D0D3D4;     /* Cool Gray 2 */
-  --blanco: #FFFFFF;
+  --color-primario: #003865; /* Pantone 2955 C */
+  --color-secundario: #00a9e0; /* Pantone 801 C */
+  --color-acento: #ff585d; /* Bright Orange */
+  --color-neutro: #d0d3d4; /* Cool Gray 2 */
+  --blanco: #ffffff;
 }
 
 @layer base {
@@ -32,7 +30,12 @@
     background: rgba(0, 169, 224, 0.2);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold text-jhedai-primary;
   }
 }
@@ -65,14 +68,28 @@
   }
 
   .bg-abstract {
-    background-image: radial-gradient(circle at 20% 30%, rgba(0, 56, 101, 0.03) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 70%, rgba(0, 169, 224, 0.03) 0%, transparent 50%);
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(0, 56, 101, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(0, 169, 224, 0.03) 0%,
+        transparent 50%
+      );
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .animate-float {
@@ -85,19 +102,51 @@
 }
 
 /* Blog prose styles */
-.prose h2 { @apply text-2xl font-bold text-jhedai-primary mt-10 mb-4; }
-.prose h3 { @apply text-xl font-bold text-jhedai-primary mt-8 mb-3; }
-.prose p { @apply text-[16px] text-jhedai-primary/70 leading-relaxed mb-4; }
-.prose ul { @apply list-disc pl-6 mb-4 space-y-2 text-jhedai-primary/70; }
-.prose ol { @apply list-decimal pl-6 mb-4 space-y-2 text-jhedai-primary/70; }
-.prose li { @apply text-[16px] leading-relaxed; }
-.prose blockquote { @apply border-l-4 border-jhedai-secondary pl-4 italic text-jhedai-primary/60 my-6; }
-.prose img { @apply rounded-xl my-6 w-full; }
-.prose table { @apply w-full border-collapse my-6 text-[15px]; }
-.prose th { @apply text-left font-bold text-jhedai-primary p-3 border-b-2 border-jhedai-neutral/30; }
-.prose td { @apply p-3 border-b border-jhedai-neutral/20 text-jhedai-primary/70; }
-.prose code { @apply bg-jhedai-primary/5 px-1.5 py-0.5 rounded text-sm font-mono; }
-.prose pre { @apply bg-jhedai-primary rounded-xl p-6 overflow-x-auto my-6; }
-.prose pre code { @apply bg-transparent text-white text-sm p-0; }
-.prose a { @apply text-jhedai-secondary underline underline-offset-2 hover:text-jhedai-primary transition-colors; }
-.prose strong { @apply font-bold text-jhedai-primary; }
+.prose h2 {
+  @apply text-2xl font-bold text-jhedai-primary mt-10 mb-4;
+}
+.prose h3 {
+  @apply text-xl font-bold text-jhedai-primary mt-8 mb-3;
+}
+.prose p {
+  @apply text-[16px] text-jhedai-primary/70 leading-relaxed mb-4;
+}
+.prose ul {
+  @apply list-disc pl-6 mb-4 space-y-2 text-jhedai-primary/70;
+}
+.prose ol {
+  @apply list-decimal pl-6 mb-4 space-y-2 text-jhedai-primary/70;
+}
+.prose li {
+  @apply text-[16px] leading-relaxed;
+}
+.prose blockquote {
+  @apply border-l-4 border-jhedai-secondary pl-4 italic text-jhedai-primary/60 my-6;
+}
+.prose img {
+  @apply rounded-xl my-6 w-full;
+}
+.prose table {
+  @apply w-full border-collapse my-6 text-[15px];
+}
+.prose th {
+  @apply text-left font-bold text-jhedai-primary p-3 border-b-2 border-jhedai-neutral/30;
+}
+.prose td {
+  @apply p-3 border-b border-jhedai-neutral/20 text-jhedai-primary/70;
+}
+.prose code {
+  @apply bg-jhedai-primary/5 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+.prose pre {
+  @apply bg-jhedai-primary rounded-xl p-6 overflow-x-auto my-6;
+}
+.prose pre code {
+  @apply bg-transparent text-white text-sm p-0;
+}
+.prose a {
+  @apply text-jhedai-secondary underline underline-offset-2 hover:text-jhedai-primary transition-colors;
+}
+.prose strong {
+  @apply font-bold text-jhedai-primary;
+}
