@@ -20,7 +20,7 @@ const contactInfo = [
     label: "contacto@jhedai.com",
     href: "mailto:contacto@jhedai.com",
   },
-  { icon: <MapPin size={18} />, label: "Santiago, Chile", href: undefined },
+  { icon: <MapPin size={18} />, label: "Viña del Mar, Chile", href: undefined },
   {
     icon: <Linkedin size={18} />,
     label: "LinkedIn",
@@ -96,7 +96,7 @@ const ContactoPage = () => {
             email: "contacto@jhedai.com",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Santiago",
+              addressLocality: "Viña del Mar",
               addressCountry: "CL",
             },
           },

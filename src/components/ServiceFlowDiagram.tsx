@@ -375,45 +375,87 @@ const ServiceFlowDiagram = ({ type, gradient }: ServiceFlowDiagramProps) => {
     );
   };
 
-  // NLP: Flujo de conversación inteligente
-  const NLPFlow = () => (
-    <div className="flex flex-col items-center justify-center gap-4 px-2 w-full">
-      <div className="flex items-center gap-8 w-full max-w-4xl -ml-[60px]">
-        {[
-          { icon: <MessageCircle size={36} />, label: "Cliente pregunta" },
-          { icon: <ArrowRight size={28} className="text-jhedai-primary/40" /> },
-          { icon: <Search size={36} />, label: "IA comprende intención" },
-          { icon: <ArrowRight size={28} className="text-jhedai-primary/40" /> },
-          { icon: <Lightbulb size={36} />, label: "Procesa contexto" },
-          { icon: <ArrowRight size={28} className="text-jhedai-primary/40" /> },
-          { icon: <CheckCircle size={36} />, label: "Responde con precisión" },
-        ].map((step, i) =>
-          step.icon.type === ArrowRight ? (
-            <div key={i} className="shrink-0">
-              {step.icon}
-            </div>
-          ) : (
-            <motion.div
-              key={i}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.12, type: "spring", stiffness: 200 }}
-              className="relative group flex-1"
+  // NLP: Pipeline de procesamiento de lenguaje natural (v2 - enhanced)
+  const NLPFlow = () => {
+    const stages = [
+      { icon: <MessageCircle size={28} />, label: "Entrada", sublabel: "Texto / Voz", y: 70 },
+      { icon: <Search size={28} />, label: "Tokenización", sublabel: "y análisis", y: 160 },
+      { icon: <Settings size={28} />, label: "Comprensión", sublabel: "semántica", y: 250 },
+      { icon: <CheckCircle size={28} />, label: "Respuesta", sublabel: "inteligente", y: 340 },
+    ];
+
+    return (
+      <div className="relative w-full h-[420px] flex items-center justify-center">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 460 420">
+          <defs>
+            <linearGradient id="nlpGradV2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#f97316" }} />
+              <stop offset="100%" style={{ stopColor: "#eab308" }} />
+            </linearGradient>
+          </defs>
+          {/* Central vertical pipeline line */}
+          <motion.line
+            x1="230" y1="100" x2="230" y2="320"
+            stroke="url(#nlpGradV2)" strokeWidth="3" strokeDasharray="8 4"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          />
+          {/* Side detail lines */}
+          <motion.line
+            x1="270" y1="160" x2="360" y2="160"
+            stroke="#f97316" strokeWidth="1.5" opacity="0.3"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          />
+          <motion.line
+            x1="270" y1="250" x2="360" y2="250"
+            stroke="#f97316" strokeWidth="1.5" opacity="0.3"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          />
+        </svg>
+
+        {/* Side annotations */}
+        <motion.div
+          initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.2 }}
+          className="absolute text-xs text-jhedai-primary/50 font-medium"
+          style={{ right: "10%", top: "35%" }}
+        >
+          Intención + Entidades
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.4 }}
+          className="absolute text-xs text-jhedai-primary/50 font-medium"
+          style={{ right: "10%", top: "57%" }}
+        >
+          Contexto + Memoria
+        </motion.div>
+
+        {stages.map((stage, i) => (
+          <motion.div
+            key={i}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: i * 0.2, type: "spring", stiffness: 200 }}
+            className="absolute group"
+            style={{ left: "calc(50% - 40px)", top: stage.y - 35 }}
+          >
+            <div
+              className={`w-[70px] h-[70px] rounded-2xl bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10`}
             >
-              <div
-                className={`w-full aspect-square max-w-[100px] mx-auto rounded-xl bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
-              >
-                {step.icon}
-              </div>
-              <p className="text-sm font-semibold text-jhedai-primary/80 text-center mt-3 leading-tight px-0.5">
-                {step.label}
-              </p>
-            </motion.div>
-          ),
-        )}
+              {stage.icon}
+            </div>
+            <div className="absolute top-1/2 -translate-y-1/2 -left-32 text-right w-28">
+              <p className="text-sm font-bold text-jhedai-primary leading-tight">{stage.label}</p>
+              <p className="text-xs text-jhedai-primary/60">{stage.sublabel}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </div>
-  );
+    );
+  };
 
   // Computer Vision: Sistema de inspección visual
   const ComputerVisionFlow = () => (
@@ -698,123 +740,107 @@ const ServiceFlowDiagram = ({ type, gradient }: ServiceFlowDiagramProps) => {
     </div>
   );
 
-  // Data Science: Ciclo de experimentación
+  // Data Science: Ciclo de experimentación (v2 - enhanced pentagon)
   const DataScienceFlow = () => {
-    const radius = 160;
-    const centerX = 230;
-    const centerY = 200;
-    const icons = [
-      {
-        icon: <Lightbulb size={32} />,
-        label: "Hipótesis",
-        sublabel: "de negocio",
-      },
-      {
-        icon: <Settings size={32} />,
-        label: "Diseño",
-        sublabel: "de experimento",
-      },
-      { icon: <Play size={32} />, label: "Ejecución", sublabel: "controlada" },
-      {
-        icon: <BarChart3 size={32} />,
-        label: "Análisis",
-        sublabel: "de resultados",
-      },
-      {
-        icon: <CheckCircle size={32} />,
-        label: "Validación",
-        sublabel: "estadística",
-      },
+    const stages = [
+      { icon: <Lightbulb size={26} />, label: "Hipótesis", sublabel: "de negocio" },
+      { icon: <Settings size={26} />, label: "Diseño", sublabel: "experimental" },
+      { icon: <Play size={26} />, label: "Ejecución", sublabel: "controlada" },
+      { icon: <BarChart3 size={26} />, label: "Análisis", sublabel: "de resultados" },
+      { icon: <CheckCircle size={26} />, label: "Validación", sublabel: "estadística" },
     ];
 
+    const radius = 130;
+    const centerX = 220;
+    const centerY = 190;
+
+    const points = stages.map((_, i) => {
+      const angle = (i / stages.length) * 2 * Math.PI - Math.PI / 2;
+      return { x: centerX + radius * Math.cos(angle), y: centerY + radius * Math.sin(angle) };
+    });
+
+    const pentagonPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
+
     return (
-      <div className="relative w-full h-96">
-        <svg className="absolute inset-0 w-full h-full">
+      <div className="relative w-full h-[420px] flex items-center justify-center">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 440 400">
           <defs>
-            <linearGradient id="dsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop
-                offset="0%"
-                className="text-rose-500"
-                style={{ stopColor: "currentColor" }}
-              />
-              <stop
-                offset="100%"
-                className="text-red-500"
-                style={{ stopColor: "currentColor" }}
-              />
+            <linearGradient id="dsGradV2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#f43f5e" }} />
+              <stop offset="100%" style={{ stopColor: "#f97316" }} />
             </linearGradient>
           </defs>
-          <motion.circle
-            cx={centerX}
-            cy={centerY}
-            r={radius}
-            stroke="url(#dsGrad)"
-            strokeWidth="5"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
+          {/* Pentagon outline */}
+          <motion.path
+            d={pentagonPath}
+            fill="none" stroke="url(#dsGradV2)" strokeWidth="2.5"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
             transition={{ duration: 2, ease: "easeInOut" }}
           />
+          {/* Inner star lines */}
+          {points.map((p, i) => {
+            const next = points[(i + 2) % points.length];
+            return (
+              <motion.line
+                key={i}
+                x1={p.x} y1={p.y} x2={next.x} y2={next.y}
+                stroke="#f43f5e" strokeWidth="1" opacity="0.15"
+                initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+                transition={{ duration: 0.8, delay: 1.5 + i * 0.15 }}
+              />
+            );
+          })}
         </svg>
 
-        {icons.map((item, i) => {
-          const angle = (i / icons.length) * 2 * Math.PI - Math.PI / 2;
+        {/* Center label */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.5, type: "spring" }}
+          className="absolute z-20 text-center"
+          style={{ left: centerX - 40, top: centerY - 20 }}
+        >
+          <p className="text-xs font-bold text-rose-500 tracking-widest">CICLO</p>
+          <p className="text-sm font-bold text-jhedai-primary">Data Science</p>
+        </motion.div>
+
+        {stages.map((stage, i) => {
+          const angle = (i / stages.length) * 2 * Math.PI - Math.PI / 2;
           const x = centerX + radius * Math.cos(angle);
           const y = centerY + radius * Math.sin(angle);
-
-          // Posicionar texto radialmente hacia afuera
-          const textOffsetDistance = 100;
-          let textX = textOffsetDistance * Math.cos(angle);
-          const textY = textOffsetDistance * Math.sin(angle);
-
-          // Ajustar "Diseño" levemente a la derecha
-          if (i === 1) {
-            textX += 10;
-          }
+          const textAngle = angle;
+          const labelDist = 80;
+          const lx = labelDist * Math.cos(textAngle);
+          const ly = labelDist * Math.sin(textAngle);
 
           return (
             <motion.div
               key={i}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.25, type: "spring", stiffness: 200 }}
+              transition={{ delay: i * 0.2 + 0.3, type: "spring", stiffness: 200 }}
               className="absolute group"
-              style={{ left: x - 40, top: y - 40 }}
+              style={{ left: x - 32, top: y - 32 }}
             >
               <div
-                className={`w-[80px] h-[80px] rounded-2xl bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white shadow-2xl group-hover:scale-110 transition-transform duration-300 relative z-10`}
+                className={`w-[64px] h-[64px] rounded-2xl bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10`}
               >
-                {item.icon}
+                {stage.icon}
               </div>
               <div
                 className="absolute text-center w-28"
                 style={{
-                  left: `calc(50% + ${textX}px)`,
-                  top: `calc(50% + ${textY}px)`,
+                  left: `calc(50% + ${lx}px)`,
+                  top: `calc(50% + ${ly}px)`,
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <p className="text-base font-bold text-jhedai-primary leading-tight">
-                  {item.label}
-                </p>
-                <p className="text-sm text-jhedai-primary/60 mt-0.5">
-                  {item.sublabel}
-                </p>
+                <p className="text-sm font-bold text-jhedai-primary leading-tight">{stage.label}</p>
+                <p className="text-xs text-jhedai-primary/60">{stage.sublabel}</p>
               </div>
             </motion.div>
           );
         })}
-
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1.2, type: "spring" }}
-          className="absolute z-20 text-center w-24"
-          style={{ left: `${centerX - 48}px`, top: `${centerY - 24}px` }}
-        >
-          <p className="text-base font-bold text-jhedai-primary">Mejora</p>
-          <p className="text-sm text-jhedai-secondary">continua</p>
-        </motion.div>
       </div>
     );
   };

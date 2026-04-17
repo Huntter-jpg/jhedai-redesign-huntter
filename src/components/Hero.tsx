@@ -6,7 +6,7 @@ import HeroTorus from "./HeroTorus";
 const partners: { name: string; logo: string; size?: "lg" | "xl" }[] = [
   {
     name: "NVIDIA Inception",
-    logo: "/logos-partners/nvidia-inception.png",
+    logo: "/logos-partners/nvidia_logo.png",
     size: "xl",
   },
   { name: "Tenpo", logo: "/logos-partners/tenpo.png" },
@@ -47,7 +47,7 @@ const partners: { name: string; logo: string; size?: "lg" | "xl" }[] = [
   { name: "CChIA", logo: "/logos-partners/cchia.jpg", size: "xl" },
   { name: "CSIAA", logo: "/logos-partners/csiaa.jpg", size: "lg" },
   { name: "Vehice", logo: "/logos-partners/vehice.png" },
-  { name: "Latam-GPT", logo: "/logos-partners/latam-gpt.jpg" },
+  { name: "Latam-GPT", logo: "/logos-partners/latamgpt_logo.png" },
   { name: "Min Ciencia", logo: "/logos-partners/MIN-CIENCIA.png", size: "lg" },
 ];
 

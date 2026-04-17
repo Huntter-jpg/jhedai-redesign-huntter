@@ -79,7 +79,7 @@ const milestones: Milestone[] = [
     date: "Enero 2025",
     title: "Perfiles Profesionales de IA - ChileValora",
     description:
-      "Equipo de JhedAI contribuye activamente en la creación de 5 perfiles profesionales de IA, liderada por ChileValora y Ministerio de Ciencia.",
+      "JhedAI participa activamente en el desarrollo y creación de los perfiles profesionales de IA de Chile Valora, junto al Ministerio de Ciencia.",
     icon: <GraduationCap size={20} />,
     category: "Formación",
     position: "left",
@@ -185,20 +185,6 @@ const valores = [
   },
 ];
 
-const stats = [
-  {
-    value: "100+",
-    label: "Proyectos Completados",
-    icon: <Building2 size={20} />,
-  },
-  { value: "50+", label: "Empresas Atendidas", icon: <Users size={20} /> },
-  { value: "3", label: "Años de Experiencia", icon: <Award size={20} /> },
-  {
-    value: "1ra",
-    label: "Certificadora ChileValora IA",
-    icon: <GraduationCap size={20} />,
-  },
-];
 
 interface TeamMember {
   name: string;
@@ -211,42 +197,34 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: "Edison Vásquez",
-    role: "CEO",
+    role: "CEO & Fundador",
     image: "/team/edison-vasquez.jpg",
     description:
-      "Ingeniero Civil Industrial, PhD(c) en Ingeniería Informática Aplicada. Presidente de la Cámara Chilena de Inteligencia Artificial. Especialista en implementación de IA estratégica, optimización de procesos y construcción de ecosistemas de IA en América Latina.",
+      "Lidera la visión estratégica de JhedAI, impulsando la construcción del ecosistema de IA en Chile. Presidente de la Cámara Chilena de Inteligencia Artificial y promotor de la adopción responsable de IA en la región.",
     linkedin: "https://www.linkedin.com/in/edison-v-29758742/",
   },
   {
-    name: "Nombre del Miembro 2",
-    role: "CTO",
-    image: "/team/member2.jpg",
+    name: "Julio Hofflinger",
+    role: "Director de Operaciones",
+    image: "/team/Julio_Hofflinger_JhedAI.png",
     description:
-      "Experto en Machine Learning y arquitectura de sistemas de IA.",
+      "Ingeniero Forestal (U. de Chile) y diplomado en Hidrógeno Verde (PUC). Director de Operaciones y responsable de la vertical de Computer Vision. Socio Fundador de la Cámara Chilena de IA, integrante de las comisiones AGORA e I+D+i. Professional Scrum Master experto en gobernanza, colaboró en el diseño del estándar de «Auditor de Ética en IA» para ChileValora y el Ministerio de Ciencias.",
     linkedin: "",
   },
   {
-    name: "Nombre del Miembro 3",
-    role: "Director de Innovación",
-    image: "/team/member3.jpg",
+    name: "Héctor Vásquez",
+    role: "Director de Desarrollo",
+    image: "/team/Hector_Vasquez_JhedAI.png",
     description:
-      "Líder en investigación y desarrollo de soluciones de IA aplicada.",
-    linkedin: "",
-  },
-  {
-    name: "Nombre del Miembro 4",
-    role: "Head of Data Science",
-    image: "/team/member4.jpg",
-    description:
-      "Científico de datos con especialización en NLP y Computer Vision.",
+      "Director de Desarrollo y gestor en AWS. Especialista en React, Computer Vision y Prompt Engineering. Curioso de nacimiento y entusiasta de la vanguardia tecnológica, lidera la arquitectura de soluciones en la nube y el despliegue de sistemas de inteligencia artificial.",
     linkedin: "",
   },
   {
     name: "Ignacio Rojas",
     role: "Director de Marketing",
-    image: "/team/ignacio-rojas.jpg",
+    image: "/team/Ignacio_Rojas_JhedAI.png",
     description:
-      "Ingeniero civil industrial, estratega de marketing digital e innovación, y consultor de transformación basada en Inteligencia Artificial.",
+      "Ingeniero civil industrial, estratega de marketing digital e innovación, y consultor de transformación basada en Inteligencia Artificial. Conecta las capacidades técnicas de JhedAI con las necesidades del mercado.",
     linkedin: "",
   },
 ];
@@ -294,39 +272,10 @@ const NosotrosPage = () => {
                 Liderando la Transformación de IA en Chile
               </h1>
               <p className="text-xl text-white/80 leading-relaxed">
-                Desde 2022, impulsamos la adopción de inteligencia artificial en
-                la industria chilena con soluciones de clase mundial y
-                metodología propietaria.
+                Impulsamos la adopción de inteligencia artificial en la
+                industria chilena con soluciones de clase mundial y metodología
+                propietaria.
               </p>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Stats Section */}
-        <div className="relative -mt-16 mb-24">
-          <div className="container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4"
-            >
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-6 shadow-xl border border-jhedai-neutral/20 text-center"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-jhedai-secondary/10 flex items-center justify-center text-jhedai-secondary mx-auto mb-4">
-                    {stat.icon}
-                  </div>
-                  <div className="text-3xl font-bold text-jhedai-primary mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-jhedai-primary/60">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
             </motion.div>
           </div>
         </div>
@@ -581,12 +530,12 @@ const NosotrosPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {teamMembers.map((member, i) => {
               const CardContent = (
-                <div className="bg-white h-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-jhedai-secondary/40">
-                  {/* Photo area - full width with wave bottom */}
-                  <div className="relative w-full h-52 overflow-hidden">
+                <div className="bg-white h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-jhedai-neutral/20 hover:border-jhedai-secondary/40 flex flex-col">
+                  {/* Photo area */}
+                  <div className="relative w-full h-72 overflow-hidden bg-gradient-to-br from-jhedai-primary to-jhedai-secondary">
                     <img
                       src={member.image}
                       alt={member.name}
@@ -596,35 +545,25 @@ const NosotrosPage = () => {
                         target.style.display = "none";
                         const parent = target.parentElement;
                         if (parent) {
-                          parent.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a1628,#00b4d8);color:white;font-size:3rem;font-weight:700">${member.name.charAt(0)}</div>`;
+                          parent.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#003865,#00A9E0);color:white;font-size:3rem;font-weight:700">${member.name.charAt(0)}</div>`;
                         }
                       }}
                     />
-                    {/* Wave SVG overlay */}
-                    <div className="absolute bottom-0 left-0 w-full">
-                      <svg
-                        viewBox="0 0 400 40"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-full"
-                        style={{ display: "block" }}
-                      >
-                        <path
-                          d="M0,20 C100,40 300,0 400,20 L400,40 L0,40 Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </div>
+                    {/* Subtle bottom edge */}
+                    <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent" />
                   </div>
 
                   {/* Info */}
-                  <div className="px-5 pt-4 pb-6 text-center">
-                    <h3 className="text-[15px] font-bold text-jhedai-primary leading-tight group-hover:text-jhedai-secondary transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-[13px] text-jhedai-secondary font-medium mt-0.5 mb-3 leading-tight">
-                      {member.role}
-                    </p>
-                    <p className="text-[12px] text-jhedai-primary/60 leading-relaxed border-t border-gray-100 pt-3">
+                  <div className="px-5 pt-3 pb-6 flex flex-col flex-1">
+                    <div className="mb-3">
+                      <h3 className="text-base font-bold text-jhedai-primary leading-tight group-hover:text-jhedai-secondary transition-colors">
+                        {member.name}
+                      </h3>
+                      <span className="inline-block mt-1.5 text-[12px] font-bold text-jhedai-secondary bg-jhedai-secondary/10 px-2.5 py-0.5 rounded-full">
+                        {member.role}
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-jhedai-primary/60 leading-relaxed flex-1">
                       {member.description}
                     </p>
                   </div>
@@ -638,7 +577,7 @@ const NosotrosPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
-                  className="group"
+                  className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(20%-19.2px)]"
                 >
                   {member.linkedin ? (
                     <a
@@ -677,8 +616,8 @@ const NosotrosPage = () => {
                 ¿Listo para Transformar tu Empresa con IA?
               </h2>
               <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-                Únete a las +50 empresas que ya confían en nosotros para su
-                transformación digital con inteligencia artificial.
+                Únete a las empresas y organismos que ya confían en nosotros
+                para su transformación digital con inteligencia artificial.
               </p>
               <a
                 href="/contacto"

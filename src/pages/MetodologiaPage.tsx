@@ -224,39 +224,168 @@ const MetodologiaPage = () => {
           </div>
         </div>
 
-        {/* Intro Section */}
+        {/* Diagrama del Tril de Metodología */}
         <div className="container py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <p className="text-lg text-jhedai-primary/70 leading-relaxed">
-              Nuestra propuesta facilita su adopci&oacute;n con un enfoque
-              integral, asegurando una transici&oacute;n eficiente y
-              convirti&eacute;ndola en un diferenciador estrat&eacute;gico.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Methodology Header */}
-        <div className="container mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-center mb-12"
           >
             <p className="text-[14px] text-jhedai-secondary font-bold tracking-widest mb-4">
-              METODOLOGIA INTROGRESIVA
+              METODOLOG&Iacute;A INTROGRESIVA
             </p>
             <h2 className="text-3xl lg:text-4xl font-bold text-jhedai-primary mb-4">
               Un enfoque integral para la adopci&oacute;n de Inteligencia
               Artificial
             </h2>
+            <p className="text-lg text-jhedai-primary/70 leading-relaxed max-w-3xl mx-auto">
+              Nuestra propuesta facilita su adopci&oacute;n con un enfoque
+              integral, asegurando una transici&oacute;n eficiente y
+              convirti&eacute;ndola en un diferenciador estrat&eacute;gico.
+            </p>
+          </motion.div>
+
+          {/* Tril Diagram - Visual Triangle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-3xl mx-auto mb-16"
+          >
+            <div className="relative bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-3xl p-8 lg:p-12 border border-jhedai-neutral/20">
+              <svg
+                viewBox="0 0 600 480"
+                className="w-full h-auto"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Triangle outline */}
+                <motion.path
+                  d="M300 60 L520 400 L80 400 Z"
+                  fill="none"
+                  stroke="url(#trilGradient)"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, delay: 0.3 }}
+                />
+
+                {/* Inner connecting lines */}
+                <motion.line
+                  x1="300" y1="60" x2="300" y2="400"
+                  stroke="#00A9E0" strokeWidth="1" strokeDasharray="6 4" opacity="0.3"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                />
+                <motion.line
+                  x1="190" y1="230" x2="410" y2="230"
+                  stroke="#00A9E0" strokeWidth="1" strokeDasharray="6 4" opacity="0.3"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 1 }}
+                />
+
+                {/* Gradient def */}
+                <defs>
+                  <linearGradient id="trilGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#003865" />
+                    <stop offset="50%" stopColor="#00A9E0" />
+                    <stop offset="100%" stopColor="#FF585D" />
+                  </linearGradient>
+                </defs>
+
+                {/* Phase 1 - Top (Diagnóstico) */}
+                <motion.g
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <circle cx="300" cy="60" r="32" fill="#003865" />
+                  <text x="300" y="56" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">01</text>
+                  <text x="300" y="70" textAnchor="middle" fill="white" fontSize="7" fontWeight="500">DIAGNÓSTICO</text>
+                  <text x="300" y="110" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Diagnóstico</text>
+                  <text x="300" y="124" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Estratégico</text>
+                </motion.g>
+
+                {/* Phase 2 - Left middle (Capacitación) */}
+                <motion.g
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <circle cx="160" cy="300" r="32" fill="#00A9E0" />
+                  <text x="160" y="296" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">02</text>
+                  <text x="160" y="310" textAnchor="middle" fill="white" fontSize="6.5" fontWeight="500">CAPACITACIÓN</text>
+                  <text x="90" y="350" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Capacitación y</text>
+                  <text x="90" y="364" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Transferencia</text>
+                </motion.g>
+
+                {/* Phase 3 - Right middle (KPIs) */}
+                <motion.g
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.9 }}
+                >
+                  <circle cx="440" cy="300" r="32" fill="#00A9E0" />
+                  <text x="440" y="296" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">03</text>
+                  <text x="440" y="310" textAnchor="middle" fill="white" fontSize="7.5" fontWeight="500">KPIs</text>
+                  <text x="510" y="350" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Oportunidades</text>
+                  <text x="510" y="364" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">y KPI</text>
+                </motion.g>
+
+                {/* Phase 4 - Bottom center (Implementación) */}
+                <motion.g
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1.1 }}
+                >
+                  <circle cx="300" cy="400" r="32" fill="#FF585D" />
+                  <text x="300" y="395" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">04</text>
+                  <text x="300" y="409" textAnchor="middle" fill="white" fontSize="6" fontWeight="500">IMPLEMENTACIÓN</text>
+                  <text x="300" y="450" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">Implementación</text>
+                  <text x="300" y="464" textAnchor="middle" fill="#003865" fontSize="11" fontWeight="600">de Soluciones</text>
+                </motion.g>
+
+                {/* Center label */}
+                <motion.g
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 1.3 }}
+                >
+                  <text x="300" y="220" textAnchor="middle" fill="#00A9E0" fontSize="10" fontWeight="700" letterSpacing="3">METODOLOGÍA</text>
+                  <text x="300" y="240" textAnchor="middle" fill="#003865" fontSize="14" fontWeight="800">INTROGRESIVA</text>
+                </motion.g>
+              </svg>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Gráfica de Metodología */}
+        <div className="container pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <img
+              src="/grafica_metodologia.jpg"
+              alt="Gráfica de la Metodología Introgresiva de JhedAI"
+              className="w-full h-auto rounded-2xl shadow-lg border border-jhedai-neutral/20"
+            />
           </motion.div>
         </div>
 
@@ -338,7 +467,7 @@ const MetodologiaPage = () => {
 
                 {/* Phase 4: Solutions Grid */}
                 {phase.num === "04" && (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                  <div className="flex flex-wrap justify-center gap-6 mt-8">
                     {solutions.map((sol, k) => (
                       <motion.div
                         key={k}
@@ -346,7 +475,7 @@ const MetodologiaPage = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: k * 0.1 }}
-                        className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-jhedai-neutral/20 hover:border-jhedai-secondary/30 transition-all duration-300 overflow-hidden"
+                        className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-jhedai-neutral/20 hover:border-jhedai-secondary/30 transition-all duration-300 overflow-hidden w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
                       >
                         <div
                           className={`absolute inset-0 bg-gradient-to-br ${sol.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}

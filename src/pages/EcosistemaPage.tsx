@@ -8,7 +8,6 @@ import {
   Building2,
   GraduationCap,
   Briefcase,
-  Cpu,
 } from "lucide-react";
 import SEOHead from "../components/SEOHead";
 import { BreadcrumbSchema } from "../components/schemas/BreadcrumbSchema";
@@ -47,13 +46,13 @@ const pillars = [
     tag: "ESTÁNDARES PROFESIONALES",
     title: "ChileValora — Perfiles Profesionales de IA",
     description:
-      "JhedAI contribuyó activamente en la creación de 5 perfiles profesionales de IA reconocidos por el Estado, liderada por ChileValora y el Ministerio de Ciencia. JhedAI es la primera empresa certificadora de IA en Chile.",
+      "JhedAI participó activamente en el desarrollo y creación de los perfiles profesionales de IA de Chile Valora, en conjunto con el Ministerio de Ciencia, contribuyendo a la definición de estándares profesionales para la industria.",
     bullets: [
-      "5 perfiles profesionales de IA creados",
-      "Primera empresa certificadora en Chile",
-      "Respaldado por ChileValora y Min. de Ciencia",
+      "Participación en el desarrollo de perfiles de IA",
+      "Colaboración con ChileValora y Min. de Ciencia",
+      "Contribución a estándares profesionales del sector",
     ],
-    badge: "1ra Certificadora IA",
+    badge: "Contribuidor ChileValora",
     gradient: "from-emerald-500 to-teal-500",
   },
   {
@@ -61,9 +60,9 @@ const pillars = [
     tag: "COMUNIDAD",
     title: "Comunidad Latam AI",
     description:
-      "Participación activa en la comunidad latinoamericana de Inteligencia Artificial, conectando talento, conocimiento y oportunidades de colaboración a lo largo de la región.",
+      "Participación activa en la comunidad latinoamericana de Inteligencia Artificial, con más de 1.000 miembros, conectando talento, conocimiento y oportunidades de colaboración a lo largo de la región.",
     bullets: [
-      "Red de profesionales y empresas de IA",
+      "Más de 1.000 miembros en Latinoamérica",
       "Intercambio de conocimiento regional",
       "Colaboración transfronteriza en IA",
     ],
@@ -72,49 +71,22 @@ const pillars = [
   },
 ];
 
-const milestones = [
-  {
-    date: "Octubre 2024",
-    title: "MOU con CENIA",
-    description:
-      "Firma de Memorándum de Entendimiento con el Centro Nacional de Inteligencia Artificial.",
-  },
-  {
-    date: "Enero 2025",
-    title: "Perfiles Profesionales ChileValora",
-    description:
-      "Contribución en la creación de 5 perfiles profesionales de IA reconocidos por el Estado.",
-  },
-  {
-    date: "Enero 2025",
-    title: "Constitución CChIA",
-    description:
-      "Constitución de la Cámara Chilena de Inteligencia Artificial A.G., con Edison Vásquez como presidente.",
-  },
-  {
-    date: "Junio 2025",
-    title: "Fondo CORFO — CSIAA",
-    description:
-      "Adjudicación de fondo CORFO para el Centro de Supercómputo e IA Aplicada en Viña del Mar.",
-  },
-  {
-    date: "Noviembre 2025",
-    title: "MOU AMD × CSIAA",
-    description:
-      "Firma de Memorándum de Entendimiento entre AMD y CSIAA para colaboración en supercómputo IA.",
-  },
-  {
-    date: "Enero 2026",
-    title: "NVIDIA Inception Program",
-    description:
-      "JhedAI es aceptado en el programa NVIDIA Inception, accediendo a tecnología y soporte de vanguardia.",
-  },
-];
-
 const allianceCategories = [
   {
+    icon: <Briefcase size={20} />,
+    title: "Industria",
+    partners: [
+      "NVIDIA Inception",
+      "AMD",
+      "Tenpo",
+      "Banco Cuscatlán",
+      "Datamate",
+      "Minverso",
+    ],
+  },
+  {
     icon: <Building2 size={20} />,
-    title: "Gobierno",
+    title: "Sector Público",
     partners: [
       "Min. de Ciencia",
       "ChileValora",
@@ -123,26 +95,25 @@ const allianceCategories = [
     ],
   },
   {
-    icon: <GraduationCap size={20} />,
-    title: "Academia",
-    partners: ["CENIA", "U. San Sebastián", "NLHPC", "Colegio Waldorf"],
-  },
-  {
-    icon: <Briefcase size={20} />,
-    title: "Industria",
-    partners: ["Tenpo", "Banco Cuscatlán", "CChIA", "EIVA", "CSIAA", "CRTIC"],
-  },
-  {
-    icon: <Cpu size={20} />,
-    title: "Tecnología",
+    icon: <Landmark size={20} />,
+    title: "Corporaciones y Gremios",
     partners: [
-      "NVIDIA Inception",
-      "AMD",
-      "Datamate",
-      "Minverso",
+      "CSIAA",
+      "CRTIC",
+      "CChIA",
+      "EIVA",
       "ChucAW",
       "Vehice",
       "Latam-GPT",
+    ],
+  },
+  {
+    icon: <GraduationCap size={20} />,
+    title: "Academia",
+    partners: [
+      "CENIA",
+      "U. San Sebastián",
+      "NLHPC",
     ],
   },
 ];
@@ -197,6 +168,22 @@ const EcosistemaPage = () => {
               </p>
             </motion.div>
           </div>
+        </div>
+
+        {/* Gráfico del Ecosistema */}
+        <div className="container py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
+          >
+            <img
+              src="/Ecosistema JhedAi.png"
+              alt="Ecosistema de Inteligencia Artificial de JhedAI"
+              className="w-full h-auto rounded-2xl shadow-lg border border-jhedai-neutral/20"
+            />
+          </motion.div>
         </div>
 
         {/* 4 Pilares Institucionales */}
@@ -287,60 +274,6 @@ const EcosistemaPage = () => {
           </div>
         </div>
 
-        {/* Timeline de Hitos Institucionales */}
-        <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 py-20">
-          <div className="container">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <p className="text-[14px] text-jhedai-secondary font-bold tracking-widest mb-4">
-                TRAYECTORIA INSTITUCIONAL
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-jhedai-primary mb-4">
-                De Consultora a Arquitecto del Ecosistema
-              </h2>
-            </motion.div>
-
-            <div className="max-w-3xl mx-auto space-y-0">
-              {milestones.map((milestone, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="relative flex gap-6 pb-10 last:pb-0"
-                >
-                  {/* Timeline line */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-4 h-4 rounded-full bg-jhedai-secondary shrink-0 mt-1.5 ring-4 ring-jhedai-secondary/20" />
-                    {i < milestones.length - 1 && (
-                      <div className="w-0.5 flex-1 bg-jhedai-secondary/20 mt-2" />
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="pb-2">
-                    <span className="text-[13px] font-bold text-jhedai-secondary tracking-wider">
-                      {milestone.date}
-                    </span>
-                    <h3 className="text-lg font-bold text-jhedai-primary mt-1">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-jhedai-primary/60 leading-relaxed mt-1">
-                      {milestone.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Red de Alianzas */}
         <div className="container py-20">
           <motion.div
@@ -358,7 +291,7 @@ const EcosistemaPage = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {allianceCategories.map((cat, i) => (
               <motion.div
                 key={i}
