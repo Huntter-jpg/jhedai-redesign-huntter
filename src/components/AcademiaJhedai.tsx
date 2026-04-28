@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users } from "lucide-react";
-import { Link } from "react-router-dom";
+
 
 const levelColors: Record<string, string> = {
   Certificación: "bg-white/10 text-white",
@@ -58,12 +58,14 @@ const AcademiaJhedai = () => {
               Capacitación empresarial en IA con certificación oficial y
               programas a medida para tu organización.
             </p>
-            <Link
-              to="/contacto"
+            <a
+              href="https://academy.jhedai.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-white/30 text-white px-6 py-2.5 rounded-md font-bold transition-all duration-300 hover:bg-white hover:text-jhedai-primary text-[14px] inline-flex items-center gap-2"
             >
               Ver catálogo completo <ArrowRight size={16} />
-            </Link>
+            </a>
           </motion.div>
 
           {/* Right - Cards */}

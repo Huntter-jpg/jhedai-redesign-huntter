@@ -201,7 +201,7 @@ const teamMembers: TeamMember[] = [
     image: "/team/edison-vasquez.jpg",
     description:
       "Lidera la visión estratégica de JhedAI, impulsando la construcción del ecosistema de IA en Chile. Presidente de la Cámara Chilena de Inteligencia Artificial y promotor de la adopción responsable de IA en la región.",
-    linkedin: "https://www.linkedin.com/in/edison-v-29758742/",
+    linkedin: "https://www.linkedin.com/in/edisonvasquezd/",
   },
   {
     name: "Julio Hofflinger",
@@ -209,7 +209,7 @@ const teamMembers: TeamMember[] = [
     image: "/team/Julio_Hofflinger_JhedAI.png",
     description:
       "Ingeniero Forestal (U. de Chile) y diplomado en Hidrógeno Verde (PUC). Director de Operaciones y responsable de la vertical de Computer Vision. Socio Fundador de la Cámara Chilena de IA, integrante de las comisiones AGORA e I+D+i. Professional Scrum Master experto en gobernanza, colaboró en el diseño del estándar de «Auditor de Ética en IA» para ChileValora y el Ministerio de Ciencias.",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/julio-hofflinger/?locale=es",
   },
   {
     name: "Héctor Vásquez",
@@ -225,7 +225,7 @@ const teamMembers: TeamMember[] = [
     image: "/team/Ignacio_Rojas_JhedAI.png",
     description:
       "Ingeniero civil industrial, estratega de marketing digital e innovación, y consultor de transformación basada en Inteligencia Artificial. Conecta las capacidades técnicas de JhedAI con las necesidades del mercado.",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/ignacio-rojas-ici/",
   },
 ];
 

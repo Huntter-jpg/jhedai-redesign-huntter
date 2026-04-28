@@ -5,7 +5,7 @@ import {
   FileSearch,
   ArrowRight,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+
 
 const items = [
   {
@@ -55,12 +55,14 @@ const AgentesAutonomos = () => {
               negocio críticos con autonomía e inteligencia. Integración nativa
               con tus sistemas existentes.
             </p>
-            <Link
-              to="/contacto"
+            <a
+              href="https://agentes-marketplace-jhedai.pages.dev"
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-white/30 text-white px-6 py-2.5 rounded-md font-bold transition-all duration-300 hover:bg-white hover:text-jhedai-primary text-[14px] inline-flex items-center gap-2"
             >
               Ver todos los agentes <ArrowRight size={16} />
-            </Link>
+            </a>
           </motion.div>
 
           {/* Right - Cards */}

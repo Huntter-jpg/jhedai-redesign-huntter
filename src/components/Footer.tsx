@@ -27,12 +27,14 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4 text-[14px] text-white/60">
               <li>
-                <Link
-                  to="/ecosistema"
+                <a
+                  href="https://agentes-marketplace-jhedai.pages.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-jhedai-secondary transition-colors"
                 >
                   Agentes Autónomos
-                </Link>
+                </a>
               </li>
               <li>
                 <Link
@@ -43,12 +45,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/ecosistema"
+                <a
+                  href="https://academy.jhedai.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-jhedai-secondary transition-colors"
                 >
                   Academia JhedAi
-                </Link>
+                </a>
               </li>
               <li>
                 <Link
@@ -67,28 +71,29 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4 text-[14px] text-white/60">
               <li>
-                <a
-                  href="/#methodology"
+                <Link
+                  to="/metodologia"
                   className="hover:text-jhedai-secondary transition-colors"
                 >
                   Metodología
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/#services"
+                <Link
+                  to="/servicios"
                   className="hover:text-jhedai-secondary transition-colors"
                 >
                   Servicios
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/#nosotros"
+                <Link
+                  to="/nosotros"
                   className="hover:text-jhedai-secondary transition-colors"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 >
                   Nosotros
-                </a>
+                </Link>
               </li>
               <li>
                 <Link

@@ -60,9 +60,9 @@ const pillars = [
     tag: "COMUNIDAD",
     title: "Comunidad Latam AI",
     description:
-      "Participación activa en la comunidad latinoamericana de Inteligencia Artificial, con más de 1.000 miembros, conectando talento, conocimiento y oportunidades de colaboración a lo largo de la región.",
+      "Participación activa en la comunidad latinoamericana de Inteligencia Artificial, con más de 2.000 miembros, conectando talento, conocimiento y oportunidades de colaboración a lo largo de la región.",
     bullets: [
-      "Más de 1.000 miembros en Latinoamérica",
+      "Más de 2.000 miembros en Latinoamérica",
       "Intercambio de conocimiento regional",
       "Colaboración transfronteriza en IA",
     ],
@@ -88,10 +88,11 @@ const allianceCategories = [
     icon: <Building2 size={20} />,
     title: "Sector Público",
     partners: [
-      "Min. de Ciencia",
+      "Ministerio de Ciencia y Tecnología",
       "ChileValora",
-      "Muni Viña del Mar",
+      "Ilustre Municipalidad de Viña del Mar",
       "Congreso Nacional",
+      "Corporación de Innovación de Viña del Mar",
     ],
   },
   {
@@ -102,16 +103,14 @@ const allianceCategories = [
       "CRTIC",
       "CChIA",
       "EIVA",
-      "ChucAW",
-      "Vehice",
       "Latam-GPT",
+      "CENIA",
     ],
   },
   {
     icon: <GraduationCap size={20} />,
     title: "Academia",
     partners: [
-      "CENIA",
       "U. San Sebastián",
       "NLHPC",
     ],
